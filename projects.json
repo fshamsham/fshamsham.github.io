@@ -1,0 +1,25 @@
+{
+    "projects": [
+        {
+            "title": "Finance Dashboard",
+            "category": ["Web Development"],
+            "summary": "A finance dashboard built with React and D3.js for data visualization.A finance dashboard built with React and D3.js for data visualization.A finance dashboard built with React and D3.js for data visualization.",
+            "link": "https://example.com/finance-dashboard",
+            "image": "assets/finance-dashboard.jpg"
+        },
+        {
+            "title": "Portfolio Website",
+            "category": ["Web Design", "Frontend"],
+            "summary": "A clean and responsive portfolio website using HTML, CSS, and JavaScript.",
+            "link": "https://example.com/portfolio",
+            "image": "assets/portfolio-website.png"
+        },
+        {
+            "title": "Weather App",
+            "category": ["Applications", "API"],
+            "summary": "A weather app using OpenWeather API with real-time updates.",
+            "link": "https://example.com/weather-app",
+            "image": "assets/weather-app.png"
+        }
+    ]
+}

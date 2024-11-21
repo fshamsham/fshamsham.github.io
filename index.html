@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#about">About</a></li>
+                <li><a href="#portfolio">Portfolio</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#blog">Blog</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="about">
+            <h1>About Me</h1>
+            <p>Welcome to my portfolio. I am a data enthusiast showcasing my projects!</p>
+        </section>
+
+        <section id="portfolio">
+            <h1>My Projects</h1>
+            <div class="projects-grid"></div>
+            <a href="projects.html" class="view-more-btn">View More</a> <!-- Link to view all projects -->
+        </section>
+
+        <section id="experience">
+            <h1>Experience</h1>
+            <p></p>
+        </section>
+
+        <section id="blog">
+            <h1>Blog</h1>
+        </section>
+
+        <section id="contact">
+            <h1>Contact Me</h1>
+            <p>Email: example@example.com</p>
+            <p>Phone: 123-456-7890</p>
+        </section>
+    </main>
+
+    <!-- Modal for Project Details -->
+    <div class="modal" id="projectModal">
+        <div class="modal-content">
+            <button class="close-btn" id="closeModalBtn">&times;</button>
+            <h2 id="modalTitle">Project Title</h2>
+            <div id="modalCategories" class="categories-container"></div>
+            <p id="modalSummary">Project Summary</p>
+            <div class="modal-footer">
+                <a id="modalLink" href="#" class="view-more-btn" target="_blank">View More</a>
+            </div>
+        </div>
+    </div>
+
+
+    <footer>
+        <p>&copy; 2024 Your Name. All Rights Reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

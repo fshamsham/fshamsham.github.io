@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Projects</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="#portfolio">Portfolio</a></li>
+                <li><a href="index.html#blog">Blog</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="portfolio">
+            <h1>All Projects</h1>
+            <div class="projects-container">
+                <div class="projects-grid"></div> <!-- Projects will be loaded here -->
+            </div>
+        </section>
+    </main>
+
+    <!-- Modal for Project Details -->
+    <div class="modal" id="projectModal">
+        <div class="modal-content">
+            <button class="close-btn" id="closeModalBtn">&times;</button>
+            <h2 id="modalTitle">Project Title</h2>
+            <div id="modalCategories" class="categories-container"></div>
+            <p id="modalSummary">Project Summary</p>
+            <div class="modal-footer">
+                <a id="modalLink" href="#" class="view-more-btn" target="_blank">View More</a>
+            </div>
+        </div>
+    </div>
+        
+    <footer>
+        <p>&copy; 2024 Your Name. All Rights Reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
