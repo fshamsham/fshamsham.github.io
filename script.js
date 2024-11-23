@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
+
     // Define category-color mapping
     const categoryColors = {
         "Web Development": "#3498db",  // Blue
@@ -9,6 +10,209 @@ document.addEventListener("DOMContentLoaded", () => {
         "API": "#1abc9c",              // Teal
         // Add more categories and their corresponding colors here
     };
+
+    const container = document.getElementById("timeline-container");
+
+    // Fetch education.json
+    fetch('education.json')
+        .then(response => response.json())
+        .then(data => {
+            const experiences = data.experiences;
+            const allImages = []; // Store all images for navigation
+            const allAchievements = [];
+
+            experiences.forEach(exp => {
+                if (exp.images) allImages.push(...exp.images);
+
+                const timelineItem = document.createElement('div');
+                timelineItem.classList.add('timeline-item');
+
+                const timelineLine = document.createElement('div');
+                timelineLine.classList.add('timeline-line');
+
+                const timelineContent = document.createElement('div');
+                timelineContent.classList.add('timeline-content');
+
+                const timelineHeader = document.createElement('div');
+                timelineHeader.classList.add('timeline-header');
+
+                const avatar = document.createElement('img');
+                avatar.src = `${exp.logo}`;
+                avatar.alt = `${exp.organization} Logo`;
+                avatar.classList.add('avatar');
+
+                const headerDetails = document.createElement('div');
+                headerDetails.innerHTML = `
+                    <h3 class="role-title">${exp.role}</h3>
+                    <p class="organization-name">${exp.organization}</p>
+                    <p class="date-range">${exp.dates} · ${exp.duration}</p>
+                    <p class="location">${exp.location}</p>
+                `;
+
+                timelineHeader.appendChild(avatar);
+                timelineHeader.appendChild(headerDetails);
+
+                const description = document.createElement('div');
+                description.classList.add('timeline-description');
+                description.innerHTML = `
+                    <p>${exp.description}</p>
+                    <p class="skills">📹 Skills: ${exp.skills.join(", ")}</p>
+                `;
+
+                if (exp.images) {
+                    const imageGallery = document.createElement('div');
+                    imageGallery.classList.add('image-gallery');
+
+                    exp.images.forEach((img, index) => {
+                        const image = document.createElement('img');
+                        image.src = img;
+                        image.alt = "Experience Image";
+                        image.addEventListener("click", () => openImageLightbox(allImages, index));
+                        imageGallery.appendChild(image);
+                    });
+
+                    description.appendChild(imageGallery);
+                }
+
+                // Create Achievement Section with Image Click Functionality
+                if (exp.achievements) {
+                    exp.achievements.forEach(achievement => {
+                        allAchievements.push(achievement);
+                        const achievementDiv = document.createElement('div');
+                        achievementDiv.classList.add('achievement');
+
+                        const achievementImage = document.createElement('img');
+                        achievementImage.src = achievement.image;
+                        achievementImage.alt = "Achievement Image";
+                        achievementImage.addEventListener("click", () => openAchievementLightbox(achievement, allAchievements));
+
+                        const achievementText = document.createElement('div');
+                        achievementText.classList.add('achievement-text');
+                        achievementText.innerHTML = `
+                            <h4>${achievement.title}</h4>
+                            <p>${achievement.description}</p>
+                        `;
+
+                        achievementDiv.appendChild(achievementImage);
+                        achievementDiv.appendChild(achievementText);
+                        description.appendChild(achievementDiv);
+                    });
+                }
+
+                timelineContent.appendChild(timelineHeader);
+                timelineContent.appendChild(description);
+
+                timelineItem.appendChild(timelineLine);
+                timelineItem.appendChild(timelineContent);
+
+                container.appendChild(timelineItem);
+            });
+        })
+        .catch(error => console.error('Error loading JSON:', error));
+
+    // Lightbox Functionality
+    function openImageLightbox(images, currentIndex) {
+        const lightbox = document.createElement('div');
+        lightbox.classList.add('lightbox');
+
+        const updateLightboxImage = (index) => {
+            currentIndex = index;
+            lightbox.querySelector('img').src = images[currentIndex];
+        };
+
+        lightbox.innerHTML = `
+            <div class="lightbox-content">
+                <button class="lightbox-nav lightbox-prev">&lt;</button>
+                <img src="${images[currentIndex]}" alt="Enlarged Image">
+                <button class="lightbox-nav lightbox-next">&gt;</button>
+                <button class="lightbox-close">&times;</button>
+            </div>
+        `;
+        document.body.appendChild(lightbox);
+
+        // Add navigation functionality
+        lightbox.querySelector('.lightbox-prev').addEventListener('click', () => {
+            if (currentIndex > 0) {
+                updateLightboxImage(currentIndex - 1);
+            }
+        });
+
+        lightbox.querySelector('.lightbox-next').addEventListener('click', () => {
+            if (currentIndex < images.length - 1) {
+                updateLightboxImage(currentIndex + 1);
+            }
+        });
+
+        // Close Lightbox
+        lightbox.querySelector('.lightbox-close').addEventListener('click', () => {
+            document.body.removeChild(lightbox);
+        });
+
+        // Close Lightbox on Outside Click
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) {
+                document.body.removeChild(lightbox);
+            }
+        });
+    }
+
+    // Lightbox for Achievement with Navigation
+    function openAchievementLightbox(achievement, allAchievements) {
+        const lightbox = document.createElement('div');
+        lightbox.classList.add('lightbox');
+        
+        let currentIndex = allAchievements.indexOf(achievement);
+    
+        const updateLightboxContent = (index) => {
+            const currentAchievement = allAchievements[index];
+            lightbox.querySelector('.lightbox-image img').src = currentAchievement.image;
+            lightbox.querySelector('.lightbox-text h4').textContent = currentAchievement.title;
+            lightbox.querySelector('.lightbox-text p').textContent = currentAchievement.description;
+            currentIndex = index;
+        };
+    
+        lightbox.innerHTML = `
+            <div class="lightbox-content achievement-lightbox">
+                <button class="lightbox-close">&times;</button>
+                <button class="lightbox-nav lightbox-prev">&lt;</button>
+                <div class="lightbox-image">
+                    <img src="${achievement.image}" alt="Achievement Image">
+                </div>
+                <div class="lightbox-text">
+                    <h4>${achievement.title}</h4>
+                    <p>${achievement.description}</p>
+                </div>
+                <button class="lightbox-nav lightbox-next">&gt;</button>
+            </div>
+        `;
+        document.body.appendChild(lightbox);
+    
+        // Add functionality to previous button
+        lightbox.querySelector('.lightbox-prev').addEventListener('click', () => {
+            if (currentIndex > 0) {
+                updateLightboxContent(currentIndex - 1);
+            }
+        });
+    
+        // Add functionality to next button
+        lightbox.querySelector('.lightbox-next').addEventListener('click', () => {
+            if (currentIndex < allAchievements.length - 1) {
+                updateLightboxContent(currentIndex + 1);
+            }
+        });
+    
+        // Close lightbox functionality
+        lightbox.querySelector('.lightbox-close').addEventListener('click', () => {
+            document.body.removeChild(lightbox);
+        });
+    
+        // Close lightbox on outside click
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) {
+                document.body.removeChild(lightbox);
+            }
+        });
+    }
 
     // Fetch projects from JSON
     fetch("projects.json")
@@ -68,6 +272,7 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         })
         .catch(err => console.error("Failed to load projects:", err));
+    
 
     // Modal functionality
     const modal = document.getElementById("projectModal");

@@ -5,46 +5,89 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portfolio</title>
     <link rel="stylesheet" href="style.css">
+    <!-- Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
     <header>
         <nav>
             <ul>
                 <li><a href="#about">About</a></li>
-                <li><a href="#portfolio">Portfolio</a></li>
                 <li><a href="#experience">Experience</a></li>
-                <li><a href="#blog">Blog</a></li>
+                <li><a href="#portfolio">Project</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
         </nav>
     </header>
 
     <main>
-        <section id="about">
-            <h1>About Me</h1>
-            <p>Welcome to my portfolio. I am a data enthusiast showcasing my projects!</p>
+        <section class="background-section">
+            <div class="content">
+                <h1>Hello, I'm Fang Ying!</h1>
+                <p>Data Analyst</p>
+                
+                <!-- Social Media Icons -->
+                <div class="social-icons">
+                    <a href="https://www.linkedin.com/in/itsfangying" target="_blank" class="social-icon">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                    <a href="https://github.com/fshamsham" target="_blank" class="social-icon">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="https://medium.com/@itsfangying" target="_blank" class="social-icon">
+                        <i class="fab fa-medium"></i>
+                    </a>
+                    <a href="https://wa.me/+60108299066" target="_blank" class="social-icon">
+                        <i class="fab fa-whatsapp"></i>
+                    </a>
+                    <a href="mailto:itsfangying@gmail.com" class="social-icon">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                </div>
+        
+                <!-- Download CV Button -->
+                <a href="path/to/your/CV.pdf" download>
+                    <button class="download-btn">Download CV</button>
+                </a>
+            </div>
         </section>
 
-        <section id="portfolio">
-            <h1>My Projects</h1>
-            <div class="projects-grid"></div>
-            <a href="projects.html" class="view-more-btn">View More</a> <!-- Link to view all projects -->
+        <section class="experience-section" id="experience">
+            <div class="container">
+                <h2 class="section-title">Experience</h2>
+                <div id="timeline-container"></div>
+            </div>
         </section>
-
-        <section id="experience">
-            <h1>Experience</h1>
-            <p></p>
-        </section>
-
-        <section id="blog">
-            <h1>Blog</h1>
+        
+        <section class="portfolio" id="portfolio">
+            <div class="container">
+                <div class="portfolio-header">
+                    <h2 class="section-title">Project</h2>
+                </div>
+                <div class="projects-grid">
+                    <!-- Your project items will go here -->
+                </div>
+                <a href="projects.html" class="view-more-btn">View More</a> <!-- Link to view all projects -->
+            </div>
         </section>
 
         <section id="contact">
             <h1>Contact Me</h1>
-            <p>Email: example@example.com</p>
-            <p>Phone: 123-456-7890</p>
+            <p>📧 itsfangying@gmail.com</p>
+            <div>
+                <a href="https://www.linkedin.com/in/itsfangying" target="_blank">
+                    <img src="assets/linkedin-icon.svg" alt="LinkedIn" width="30" height="30"></a>
+                <a href="https://github.com/fshamsham" target="_blank">
+                    <img src="assets/github-icon.png" alt="GitHub" width="30" height="30"></a>
+                <a href="https://medium.com/@itsfangying" target="_blank">
+                    <img src="assets/medium-icon.png" alt="Medium" width="30" height="30"></a>
+                <a href="https://wa.me/+60108299066" target="_blank">
+                    <img src="assets/whatsapp-icon.png" alt="WhatsApp" width="30" height="30"></a>
+                <a href="mailto:itsfangying@gmail.com" target="_blank">
+                    <img src="assets/email-icon.png" alt="Email" width="30" height="30"></a>
+            </div>
         </section>
+        
     </main>
 
     <!-- Modal for Project Details -->
