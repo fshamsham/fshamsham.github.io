@@ -483,7 +483,6 @@ section {
 }
 
 .skills {
-    font-style: italic;
     color: #666;
     margin-top: 12px;
 }
@@ -502,10 +501,10 @@ section {
 
 /* Image Styles */
 .image-gallery img {
-    width: 100px;
+    width: 180px;
     height: 100px;
     object-fit: cover;
-    border-radius: 4px;
+    border-radius: 10px;
     border: 1px solid #ddd;
     transition: transform 0.2s ease-in-out;
 }
@@ -518,15 +517,15 @@ section {
 .achievement {
     display: flex;
     gap: 15px;
-    margin-top: 20px;
+    margin-top: 10px;
     align-items: flex-start;
     text-align: left; /* Left-align achievements */
 }
 
 .achievement img {
-    width: 100px;
+    width: 180px;
     height: 100px;
-    border-radius: 4px;
+    border-radius: 10px;
     object-fit: cover;
     border: 1px solid #ddd;
 }
@@ -610,8 +609,20 @@ section {
         top: 10px;
         right: 10px;
         font-size: 20px;
-        width: 28px;
-        height: 28px;
+        width: 26px;
+        height: 26px;
+    }
+
+    /* Image Styles */
+    .image-gallery img {
+        width: 150px;
+        height: 100px;
+    }
+
+    .achievement img {
+        width: 150px; /* Adjust the width for smaller screens */
+        height:auto; /* Adjust the height for smaller screens */
+        object-fit: cover;
     }
 
     /* Stack the content vertically on mobile */

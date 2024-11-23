@@ -54,12 +54,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 const description = document.createElement('div');
                 description.classList.add('timeline-description');
+                // Create the description with conditional rendering for skills
                 description.innerHTML = `
-                    <p>${exp.description}</p>
-                    <p class="skills">📹 Skills: ${exp.skills.join(", ")}</p>
+                    <p>${exp.description.replace(/\*\*(.*?)\*\*/g, '<b>$1</b>').replace(/\n/g, '<br>')}</p>
+                    ${
+                        exp.skills && exp.skills.length > 0 
+                        ? `<p class="skills">💎 Skills: ${exp.skills.join(", ")}</p>` 
+                        : ''
+                    }
                 `;
 
                 if (exp.images) {
+
+                    console.log(experiences)
                     const imageGallery = document.createElement('div');
                     imageGallery.classList.add('image-gallery');
 
@@ -74,28 +81,98 @@ document.addEventListener("DOMContentLoaded", () => {
                     description.appendChild(imageGallery);
                 }
 
-                // Create Achievement Section with Image Click Functionality
+                // Create Achievement Section with Image and PDF Click Functionality
                 if (exp.achievements) {
                     exp.achievements.forEach(achievement => {
-                        allAchievements.push(achievement);
+
                         const achievementDiv = document.createElement('div');
                         achievementDiv.classList.add('achievement');
 
                         const achievementImage = document.createElement('img');
-                        achievementImage.src = achievement.image;
                         achievementImage.alt = "Achievement Image";
+
+                        // Check if the achievement image is a PDF
+                        if (achievement.image.toLowerCase().endsWith('.pdf')) {
+                            console.log("Found PDF:", achievement.image);
+
+                            // Create a canvas to render the first page of the PDF
+                            const canvas = document.createElement('canvas');
+                            canvas.alt = "Achievement PDF";
+
+                            // Use pdf.js to render the PDF into the canvas
+                            renderPDFPageAsImage(achievement.image, canvas, (imageUrl) => {
+                                // Convert the canvas to a data URL and set it as the image source
+                                achievement.image = imageUrl;
+                                achievementImage.src = imageUrl;
+
+                                // Append the image (converted from PDF) first
+                                achievementDiv.appendChild(achievementImage);
+
+                                // After appending the image, append the description
+                                const achievementText = document.createElement('div');
+                                achievementText.classList.add('achievement-text');
+                                achievementText.innerHTML = `
+                                    <h4>${achievement.title}</h4>
+                                    <p>${achievement.description}</p>
+                                `;
+                                achievementDiv.appendChild(achievementText);
+
+                                // Append the achievement div to the description container
+                                description.appendChild(achievementDiv);
+                            });
+                        } else {
+                            // Handle regular image
+                            achievementImage.src = achievement.image;
+
+                            // Append the regular image first
+                            achievementDiv.appendChild(achievementImage);
+
+                            // After appending the image, append the description
+                            const achievementText = document.createElement('div');
+                            achievementText.classList.add('achievement-text');
+                            achievementText.innerHTML = `
+                                <h4>${achievement.title}</h4>
+                                <p>${achievement.description}</p>
+                            `;
+                            achievementDiv.appendChild(achievementText);
+
+                            // Append the achievement div to the description container
+                            description.appendChild(achievementDiv);
+                        }
+
+                        allAchievements.push(achievement);
+
                         achievementImage.addEventListener("click", () => openAchievementLightbox(achievement, allAchievements));
+                    });
+                    
+                }
+                
 
-                        const achievementText = document.createElement('div');
-                        achievementText.classList.add('achievement-text');
-                        achievementText.innerHTML = `
-                            <h4>${achievement.title}</h4>
-                            <p>${achievement.description}</p>
-                        `;
+                // Function to render the first page of a PDF into a canvas and convert it to an image URL
+                function renderPDFPageAsImage(pdfUrl, canvas, callback) {
+                    const loadingTask = pdfjsLib.getDocument(pdfUrl);  // Load the PDF
+                    loadingTask.promise.then(pdf => {
+                        pdf.getPage(1).then(page => {  // Render the first page
+                            const viewport = page.getViewport({ scale: 1.5 });  // Adjust scale as needed
+                            const context = canvas.getContext('2d');
+                            canvas.width = viewport.width;
+                            canvas.height = viewport.height;
 
-                        achievementDiv.appendChild(achievementImage);
-                        achievementDiv.appendChild(achievementText);
-                        description.appendChild(achievementDiv);
+                            const renderContext = {
+                                canvasContext: context,
+                                viewport: viewport
+                            };
+
+                            page.render(renderContext).promise.then(() => {
+                                console.log("PDF rendered successfully!");
+
+                                // Convert the canvas to a data URL and pass it to the callback
+                                const imageUrl = canvas.toDataURL();
+                                callback(imageUrl);
+                            });
+                        });
+                    }).catch(error => {
+                        console.error("Error loading PDF:", error);
                     });
                 }
 

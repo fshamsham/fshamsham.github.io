@@ -1,43 +1,44 @@
 {
-    "experiences": [
-      {
-        "logo": "assets/profile.png",
-        "role": "Chairperson",
-        "organization": "INTI IU Mass Communication Club",
-        "dates": "Jan 2022 - Jun 2022",
-        "duration": "6 months",
-        "location": "Nilai, Negri Sembilan, Malaysia",
-        "description": "Led the club to meet goals and received recognition as the recipient of the coveted \"Best Affiliate Award\" out of 60+ affiliates. Planned club development, handled issues, and communicated with club committees around the university.",
-        "skills": ["Video Production", "Leadership"],
-        "images": [
-          "assets/finance-dashboard.jpg",
-          "assets/weather-app.jpeg",
-          "https://placehold.co/80x80",
-          "https://placehold.co/80x80"
-        ]
-      },
-      {
-        "logo": "assets/whatsapp-icon.png",
-        "role": "Vice Chairperson",
-        "organization": "INTI IU Mass Communication Club",
-        "dates": "May 2021 - Dec 2021",
-        "duration": "8 months",
-        "location": "Nilai, Negri Sembilan, Malaysia",
-        "description": "Assisted the club chairperson in managing and organizing club activities. Conducted activities that allowed members to learn new things and showcase their talents.",
-        "skills": ["Leadership", "Event Management"],
-        "achievements": [
-          {
-            "title": "25th INTIMA Most Outstanding Council Member",
-            "description": "Recommended and successfully selected as the most outstanding council member by the 25th INTI Student Government (INTIMA) & Student Services Department (SSD).",
-            "image": "assets/finance-dashboard.jpg"
-          },
-          {
-            "title": "26th INTIMA Most Outstanding Council Member",
-            "description": "Recommended and successfully selected as the most outstanding council member by the 25th INTI Student Government (INTIMA) & Student Services Department (SSD).",
-            "image": "assets/weather-app.jpeg"
-          }
-        ]
-      }
-    ]
-  }
-  
+  "experiences": [
+    {
+      "logo": "assets/inti-logo.jpeg",
+      "role": "INTI International University",
+      "organization": "Bachelor of Computer Science (Hons)",
+      "dates": "Jun 2019 - Jun 2022",
+      "duration": "3 years",
+      "location": "Nilai, Negri Sembilan, Malaysia",
+      "description": "CGPA: 3.96/4.0 \n\n **Academic Achievement** \n • 2nd Winner - IEEE Innovation Competition 2022 \n Project Title: Developing Talent Prediction System with Combination of Personality Tests using Predictive Analytics \n• Project Presenter - 4th International Conference on Innovation and Technopreneurship (ICIT) 2021 \n• 4 times President's Honor Roll recipient\n• 1 time Dean's Honor Roll recipient\n\n**Clubs & Societies | Leadership**\n• INTIMA Mass Communication Club | Chairperson, 2022 | Vice Chairperson, 2021 | Secretary, 2021 | Media Publicity, 2020\n\n**Club & Societies Achievements**\n• 26th INTIMA Best Affiliate - Mass Communication Club\n• 25th INTIMA Most Outstanding Council Member, 2021\n• 25th INTIMA Best Academic Event - MCW2021",
+      "skills": [
+        "Video Production",
+        "Leadership"
+      ],
+      "images": [
+        "assets/finance-dashboard.jpg",
+        "assets/weather-app.jpeg",
+        "https://placehold.co/80x80",
+        "https://placehold.co/80x80"
+      ]
+    },
+    {
+      "logo": "assets/coventry_university_logo.jpeg",
+      "role": "Coventry University",
+      "organization": "Computer Science BSc (Hons), Computer Science",
+      "dates": "Jun 2019 - Jun 2022",
+      "duration": "3 years",
+      "location": "Nilai, Negri Sembilan, Malaysia",
+      "description": "Dual Award Program in collaboration with INTI International University. \n\n**Academic Achievement** \n • Coventry University Best Student Award (CGPA: 3.96), Jan 2022\n• Coventry University Best Project Award, Jan 2022\nProject Title: Developing Talent Prediction System with Combination of Personality Tests using Predictive Analytics",
+      "achievements": [
+        {
+          "title": "Best Project Award",
+          "description": "The Final Year Project, titled 'Developing a Talent Prediction System with a Combination of Personality Tests using Predictive Analytics', was nominated and selected as the Best Project among more than 50 peers after undergoing an interview session by Coventry University.",
+          "image": "assets/finance-dashboard.jpg"
+        },
+        {
+          "title": "Best Student Award",
+          "description": "Awarded by Coventry University as the best student with the highest CGPA among peers in the same batch.",
+          "image": "assets/best-student-award.pdf"
+        }
+      ]
+    }
+  ]
+}
