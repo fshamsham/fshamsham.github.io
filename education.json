@@ -1,0 +1,43 @@
+{
+    "experiences": [
+      {
+        "logo": "assets/profile.png",
+        "role": "Chairperson",
+        "organization": "INTI IU Mass Communication Club",
+        "dates": "Jan 2022 - Jun 2022",
+        "duration": "6 months",
+        "location": "Nilai, Negri Sembilan, Malaysia",
+        "description": "Led the club to meet goals and received recognition as the recipient of the coveted \"Best Affiliate Award\" out of 60+ affiliates. Planned club development, handled issues, and communicated with club committees around the university.",
+        "skills": ["Video Production", "Leadership"],
+        "images": [
+          "assets/finance-dashboard.jpg",
+          "assets/weather-app.jpeg",
+          "https://placehold.co/80x80",
+          "https://placehold.co/80x80"
+        ]
+      },
+      {
+        "logo": "assets/whatsapp-icon.png",
+        "role": "Vice Chairperson",
+        "organization": "INTI IU Mass Communication Club",
+        "dates": "May 2021 - Dec 2021",
+        "duration": "8 months",
+        "location": "Nilai, Negri Sembilan, Malaysia",
+        "description": "Assisted the club chairperson in managing and organizing club activities. Conducted activities that allowed members to learn new things and showcase their talents.",
+        "skills": ["Leadership", "Event Management"],
+        "achievements": [
+          {
+            "title": "25th INTIMA Most Outstanding Council Member",
+            "description": "Recommended and successfully selected as the most outstanding council member by the 25th INTI Student Government (INTIMA) & Student Services Department (SSD).",
+            "image": "assets/finance-dashboard.jpg"
+          },
+          {
+            "title": "26th INTIMA Most Outstanding Council Member",
+            "description": "Recommended and successfully selected as the most outstanding council member by the 25th INTI Student Government (INTIMA) & Student Services Department (SSD).",
+            "image": "assets/weather-app.jpeg"
+          }
+        ]
+      }
+    ]
+  }
+  
