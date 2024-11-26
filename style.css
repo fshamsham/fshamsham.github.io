@@ -544,18 +544,23 @@ section {
     transform: scale(1.05); /* Slight zoom on hover */
 }
 
-/* Mobile-Specific Adjustments */
+/* Mobile-Specific Scrollbar Adjustments */
 @media (max-width: 768px) {
     .image-gallery {
-        scrollbar-width: auto; /* Allow default scrollbar width on mobile */
+        scrollbar-width: auto; /* Default width for better usability */
     }
 
     .image-gallery::-webkit-scrollbar {
-        height: 6px; /* Slightly smaller scrollbar for mobile */
+        height: 6px; /* Slightly smaller height for mobile */
     }
 
     .image-gallery::-webkit-scrollbar-thumb {
-        background-color: #ccc; /* Lighter thumb for mobile aesthetics */
+        background-color: #ee224a; /* Mobile-specific thumb color */
+        border-radius: 6px; /* Extra-rounded for a modern touch */
+    }
+
+    .image-gallery::-webkit-scrollbar-thumb:hover {
+        background-color: #d81b3d; /* Slightly darker red on hover */
     }
 }
 
