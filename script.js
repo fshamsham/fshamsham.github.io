@@ -73,7 +73,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     exp.images.forEach((img, index) => {
                         const image = document.createElement('img');
                         image.src = img;
-                        image.alt = "Experience Image";
+                        image.alt = `Experience Image ${index + 1}`;
                         image.addEventListener("click", () => openImageLightbox(allImages, index));
                         imageGallery.appendChild(image);
                     });
