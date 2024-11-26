@@ -502,7 +502,6 @@ section {
 /* Customize scrollbar for Webkit-based browsers (Chrome, Edge, Safari) */
 .image-gallery::-webkit-scrollbar {
     height: 8px; /* Set scrollbar height */
-    background-color: transparent; /* Transparent track background */
 }
 
 .image-gallery::-webkit-scrollbar-thumb {
@@ -530,7 +529,6 @@ section {
     box-sizing: border-box;
     scrollbar-width: thin; /* Thin scrollbar */
     scrollbar-color: #bbb transparent; /* Thumb and track colors */
-    -ms-overflow-style: none; /* Remove default scrollbar in IE */
 }
 
 .image-gallery img {
@@ -546,13 +544,20 @@ section {
     transform: scale(1.05); /* Slight zoom on hover */
 }
 
-/* Mobile-specific adjustments */
+/* Mobile-Specific Adjustments */
 @media (max-width: 768px) {
     .image-gallery {
-        padding-bottom: 15px; /* Ensure space for scrollbar */
+        scrollbar-width: auto; /* Allow default scrollbar width on mobile */
+    }
+
+    .image-gallery::-webkit-scrollbar {
+        height: 6px; /* Slightly smaller scrollbar for mobile */
+    }
+
+    .image-gallery::-webkit-scrollbar-thumb {
+        background-color: #ccc; /* Lighter thumb for mobile aesthetics */
     }
 }
-
 
 /* Achievement Block */
 .achievement {
