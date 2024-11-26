@@ -70,6 +70,12 @@ document.addEventListener("DOMContentLoaded", () => {
                     const imageGallery = document.createElement('div');
                     imageGallery.classList.add('image-gallery');
 
+                    const scrollbar = document.querySelector('.scrollbar');
+                    imageGallery.addEventListener('scroll', () => {
+                        const scrollPercentage = imageGallery.scrollLeft / imageGallery.scrollWidth;
+                        scrollbar.style.left = `${scrollPercentage * 100}%`;
+                    });
+
                     exp.images.forEach((img, index) => {
                         const image = document.createElement('img');
                         image.src = img;

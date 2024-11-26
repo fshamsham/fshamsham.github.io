@@ -499,6 +499,22 @@ section {
     box-sizing: border-box; /* Ensure padding doesn't affect dimensions */
 }
 
+/* Customize scrollbar for Webkit-based browsers (Chrome, Edge, Safari) */
+.image-gallery::-webkit-scrollbar {
+    height: 8px; /* Set scrollbar height */
+}
+
+.image-gallery::-webkit-scrollbar-thumb {
+    background-color: #bbb; /* Thumb (scroll handle) color */
+    border-radius: 4px; /* Rounded corners for the thumb */
+    border: 2px solid transparent; /* Add space around the thumb */
+    background-clip: padding-box; /* Prevent thumb edges from overflowing */
+}
+
+.image-gallery::-webkit-scrollbar-thumb:hover {
+    background-color: #888; /* Darker color on hover */
+}
+
 /* Image Gallery - Horizontal Row */
 .image-gallery {
     display: flex !important; /* Force flex layout */
@@ -509,10 +525,22 @@ section {
     -webkit-overflow-scrolling: touch; /* Smooth scrolling on touch devices */
     scroll-behavior: smooth; /* Smooth scroll behavior */
     gap: 10px;
-    padding: 10px;
+    padding: 5px;
     box-sizing: border-box;
     scrollbar-width: thin; /* Thin scrollbar */
-    scrollbar-color: #ee224a transparent; /* Thumb and track colors for Firefox */
+    scrollbar-color: #bbb transparent; /* Thumb and track colors */
+}
+
+.scrollbar {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 4px;
+    background-color: #ee224a; /* Match your desired scrollbar color */
+    width: 50%; /* Adjust based on the gallery width */
+    border-radius: 2px;
+    cursor: pointer;
+    pointer-events: none; /* Prevent blocking touch gestures */
 }
 
 .image-gallery img {
@@ -528,42 +556,23 @@ section {
     transform: scale(1.05); /* Slight zoom on hover */
 }
 
-/* Webkit Scrollbar Styles (Chrome, Safari, Edge) */
-.image-gallery::-webkit-scrollbar {
-    height: 8px; /* Scrollbar height */
-    background-color: transparent; /* Transparent track background */
-}
-
-.image-gallery::-webkit-scrollbar-thumb {
-    background-color: #ee224a; /* Thumb color */
-    border-radius: 4px; /* Rounded corners */
-    border: 2px solid transparent; /* Spacing for sleek look */
-    background-clip: padding-box; /* Prevent edges from overflowing */
-}
-
-/* Hover Effect */
-.image-gallery::-webkit-scrollbar-thumb:hover {
-    background-color: #d81b3d; /* Slightly darker red on hover */
-}
-
-
-/* Mobile-Specific Adjustments */
+/* Mobile-Specific Scrollbar Adjustments */
 @media (max-width: 768px) {
     .image-gallery {
-        scrollbar-width: auto; /* Default scrollbar width for better visibility */
+        scrollbar-width: auto; /* Default width for better usability */
     }
 
     .image-gallery::-webkit-scrollbar {
-        height: 6px; /* Smaller scrollbar height for mobile */
+        height: 6px; /* Slightly smaller height for mobile */
     }
 
     .image-gallery::-webkit-scrollbar-thumb {
         background-color: #ee224a; /* Mobile-specific thumb color */
-        border-radius: 6px; /* Extra-rounded for a modern look */
+        border-radius: 6px; /* Extra-rounded for a modern touch */
     }
 
     .image-gallery::-webkit-scrollbar-thumb:hover {
-        background-color: #d81b3d; /* Darker red on hover for mobile */
+        background-color: #d81b3d; /* Slightly darker red on hover */
     }
 }
 
