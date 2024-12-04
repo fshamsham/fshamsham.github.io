@@ -89,10 +89,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 // Create Achievement Section with Image and PDF Click Functionality
                 if (exp.achievements) {
-                    exp.achievements.forEach(achievement => {
 
-                        const achievementDiv = document.createElement('div');
-                        achievementDiv.classList.add('achievement');
+                    const achievementDiv = document.createElement('div');
+                    achievementDiv.classList.add('achievement');
+
+                    exp.achievements.forEach(achievement => {
 
                         const achievementImage = document.createElement('img');
                         achievementImage.alt = "Achievement Image";
@@ -114,15 +115,6 @@ document.addEventListener("DOMContentLoaded", () => {
                                 // Append the image (converted from PDF) first
                                 achievementDiv.appendChild(achievementImage);
 
-                                // After appending the image, append the description
-                                const achievementText = document.createElement('div');
-                                achievementText.classList.add('achievement-text');
-                                achievementText.innerHTML = `
-                                    <h4>${achievement.title}</h4>
-                                    <p>${achievement.description}</p>
-                                `;
-                                achievementDiv.appendChild(achievementText);
-
                                 // Append the achievement div to the description container
                                 description.appendChild(achievementDiv);
                             });
@@ -132,15 +124,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
                             // Append the regular image first
                             achievementDiv.appendChild(achievementImage);
-
-                            // After appending the image, append the description
-                            const achievementText = document.createElement('div');
-                            achievementText.classList.add('achievement-text');
-                            achievementText.innerHTML = `
-                                <h4>${achievement.title}</h4>
-                                <p>${achievement.description}</p>
-                            `;
-                            achievementDiv.appendChild(achievementText);
 
                             // Append the achievement div to the description container
                             description.appendChild(achievementDiv);
@@ -206,7 +189,9 @@ document.addEventListener("DOMContentLoaded", () => {
         lightbox.innerHTML = `
             <div class="lightbox-content">
                 <button class="lightbox-nav lightbox-prev">&lt;</button>
-                <img src="${images[currentIndex]}" alt="Enlarged Image">
+                <div class="lightbox-media">
+                    <img src="${images[currentIndex]}" alt="Enlarged Image">
+                </div>
                 <button class="lightbox-nav lightbox-next">&gt;</button>
                 <button class="lightbox-close">&times;</button>
             </div>
@@ -239,63 +224,89 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // Lightbox for Achievement with Navigation
+    // Function to open the lightbox for a particular achievement/media
     function openAchievementLightbox(achievement, allAchievements) {
         const lightbox = document.createElement('div');
         lightbox.classList.add('lightbox');
-        
+
         let currentIndex = allAchievements.indexOf(achievement);
-    
+
         const updateLightboxContent = (index) => {
             const currentAchievement = allAchievements[index];
-            lightbox.querySelector('.lightbox-image img').src = currentAchievement.image;
-            lightbox.querySelector('.lightbox-text h4').textContent = currentAchievement.title;
-            lightbox.querySelector('.lightbox-text p').textContent = currentAchievement.description;
+            
+            // Update lightbox with different media types
+            const mediaContainer = lightbox.querySelector('.lightbox-media');
+            const textContainer = lightbox.querySelector('.lightbox-text');
+
+            // Clear current media and add the new media type
+            mediaContainer.innerHTML = '';
+            if (currentAchievement.type === 'image') {
+                const img = document.createElement('img');
+                img.src = currentAchievement.image;
+                img.alt = 'Achievement Image';
+                mediaContainer.appendChild(img);
+            } else if (currentAchievement.type === 'video') {
+                const video = document.createElement('video');
+                video.controls = true;
+                const source = document.createElement('source');
+                source.src = currentAchievement.video;
+                source.type = 'video/mp4';
+                video.appendChild(source);
+                mediaContainer.appendChild(video);
+            }
+            
+            textContainer.querySelector('h4').textContent = currentAchievement.title;
+            textContainer.querySelector('p').textContent = currentAchievement.description;
             currentIndex = index;
         };
-    
+
+        // Create the lightbox HTML structure
         lightbox.innerHTML = `
             <div class="lightbox-content achievement-lightbox">
                 <button class="lightbox-close">&times;</button>
                 <button class="lightbox-nav lightbox-prev">&lt;</button>
-                <div class="lightbox-image">
-                    <img src="${achievement.image}" alt="Achievement Image">
+                <div class="lightbox-media">
+                    <!-- Media content will go here -->
                 </div>
                 <div class="lightbox-text">
-                    <h4>${achievement.title}</h4>
-                    <p>${achievement.description}</p>
+                    <h4></h4>
+                    <p></p>
                 </div>
                 <button class="lightbox-nav lightbox-next">&gt;</button>
             </div>
         `;
         document.body.appendChild(lightbox);
-    
+
         // Add functionality to previous button
         lightbox.querySelector('.lightbox-prev').addEventListener('click', () => {
             if (currentIndex > 0) {
                 updateLightboxContent(currentIndex - 1);
             }
         });
-    
+
         // Add functionality to next button
         lightbox.querySelector('.lightbox-next').addEventListener('click', () => {
             if (currentIndex < allAchievements.length - 1) {
                 updateLightboxContent(currentIndex + 1);
             }
         });
-    
+
         // Close lightbox functionality
         lightbox.querySelector('.lightbox-close').addEventListener('click', () => {
             document.body.removeChild(lightbox);
         });
-    
+
         // Close lightbox on outside click
         lightbox.addEventListener('click', (e) => {
             if (e.target === lightbox) {
                 document.body.removeChild(lightbox);
             }
         });
+
+        // Initial content
+        updateLightboxContent(currentIndex);
     }
+
 
     // Fetch projects from JSON
     fetch("projects.json")

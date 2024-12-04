@@ -33,11 +33,13 @@
         {
           "title": "Best Project Award",
           "description": "The Final Year Project, titled 'Developing a Talent Prediction System with a Combination of Personality Tests using Predictive Analytics', was nominated and selected as the Best Project among more than 50 peers after undergoing an interview session by Coventry University.",
+          "type": "image", 
           "image": "assets/finance-dashboard.jpg"
         },
         {
           "title": "Best Student Award",
           "description": "Awarded by Coventry University as the best student with the highest CGPA among peers in the same batch.",
+          "type": "image", 
           "image": "assets/best-student-award.pdf"
         }
       ]

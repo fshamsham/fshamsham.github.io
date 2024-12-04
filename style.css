@@ -516,7 +516,7 @@ section {
 }
 
 /* Image Gallery - Horizontal Row */
-.image-gallery {
+.image-gallery, .achievement {
     display: flex !important; /* Force flex layout */
     flex-wrap: nowrap !important; /* Prevent wrapping */
     overflow-x: auto !important; /* Enable horizontal scrolling */
@@ -543,7 +543,7 @@ section {
     pointer-events: none; /* Prevent blocking touch gestures */
 }
 
-.image-gallery img {
+.image-gallery img, .achievement img {
     flex-shrink: 0 !important; /* Prevent images from shrinking */
     width: 150px !important; /* Fixed width for images */
     height: 100px !important; /* Fixed height */
@@ -552,25 +552,8 @@ section {
     border: 1px solid #ddd;
 }
 
-.image-gallery img:hover {
+.image-gallery img:hover, .achievement img:hover {
     transform: scale(1.05); /* Slight zoom on hover */
-}
-
-/* Achievement Block */
-.achievement {
-    display: flex;
-    gap: 15px;
-    margin-top: 10px;
-    align-items: flex-start;
-    text-align: left; /* Left-align achievements */
-}
-
-.achievement img {
-    width: 180px;
-    height: 100px;
-    border-radius: 10px;
-    object-fit: cover;
-    border: 1px solid #ddd;
 }
 
 .achievement-text h4 {
@@ -631,35 +614,8 @@ section {
         gap: 10px;
     }
 
-    .lightbox-content {
-        width: 95%;
-        max-width: none;
-    }
-
-    .lightbox-nav {
-        font-size: 20px; /* Further reduce font size */
-        width: 30px;     /* Even smaller button size */
-        height: 30px;    /* Even smaller button size */
-    }
-
-    .lightbox-prev {
-        left: -30px; /* Adjust positioning for smaller screens */
-    }
-
-    .lightbox-next {
-        right: -30px; /* Adjust positioning for smaller screens */
-    }
-
-    .lightbox-close {
-        top: 10px;
-        right: 10px;
-        font-size: 20px;
-        width: 26px;
-        height: 26px;
-    }
-
     /* Image Styles */
-    .image-gallery img {
+    .image-gallery img, .achievement img {
         width: 150px;
         height: 100px;
     }
@@ -667,53 +623,6 @@ section {
     .image-gallery {
         scrollbar-width: auto; /* Default width for better usability */
         padding-right: 20px;
-    }
-
-    /* Add the visual scrolling indicator */
-    .image-gallery::after {
-        content: ""; /* Creates a scroll cue */
-        position: absolute;
-        right: 0;
-        bottom: 0;
-        width: 60px; /* Adjust the size of the cue */
-        height: 4px; /* Thickness of the cue */
-        background: linear-gradient(to left, #ee224a, transparent); /* Cue color fading out */
-        pointer-events: none; /* Ensure it doesn’t interfere with scrolling */
-        z-index: 1; /* Keeps it above the gallery */
-    }
-
-    .achievement img {
-        width: 150px; /* Adjust the width for smaller screens */
-        height:auto; /* Adjust the height for smaller screens */
-        object-fit: cover;
-    }
-
-    /* Stack the content vertically on mobile */
-    .achievement-lightbox .lightbox-content {
-        flex-direction: column; /* Change flex direction to column */
-        height: auto; /* Adjust height to auto to better fit content */
-    }
-
-    /* Image panel (takes full width on mobile) */
-    .achievement-lightbox .lightbox-image {
-        flex: 0 0 100%; /* Image takes 100% of the width on mobile */
-        padding: 0;  /* Remove padding for better fit */
-        margin-bottom: 20px; /* Space between image and description */
-    }
-
-    /* Text panel (takes full width on mobile) */
-    .achievement-lightbox .lightbox-text {
-        flex: 0 0 100%; /* Text takes 100% of the width on mobile */
-        max-width: 100%; /* Remove any width restrictions */
-        padding-top: 20px; /* Add some space between the image and text */
-    }
-
-    .achievement-lightbox .lightbox-text h4 {
-        font-size: 20px; /* Slightly reduce font size for mobile */
-    }
-
-    .achievement-lightbox .lightbox-text p {
-        font-size: 14px; /* Adjust paragraph text size for mobile */
     }
 }
 
@@ -727,6 +636,7 @@ section {
     line-height: 1.4; /* Adjust line spacing if needed for better readability */
 }
 
+/* Lightbox Styles */
 /* Lightbox Styles */
 .lightbox {
     position: fixed;
@@ -744,24 +654,94 @@ section {
 .lightbox-content {
     position: relative;
     width: 80%;
-    max-width: 1000px; /* Set a max width for the lightbox */
-    height: 80%; /* Ensure the image container stays proportional */
+    max-width: 1000px;
+    height: 80%;
+    display: flex;
+    justify-content: space-between;
+    background: white;  /* Default background for larger screens */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    flex-direction: row;
+}
+
+/* Media content styling (Image, Video) */
+.lightbox-media {
+    width: 100%;  /* Image/Video takes 60% of the space */
+    height: 100%; /* Ensure the image fills the height of the container */
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 10px;
+    overflow: hidden;
 }
 
-.lightbox-content img {
+.lightbox-media img {
     width: 100%;
-    height: auto;
+    height: 100%;
+    object-fit: contain;
     border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
 
+/* Text content styling */
+.lightbox-text {
+    width: 50%;
+    padding: 20px;
+    text-align: left;
+    overflow-y: auto;
+    color: black;
+}
+
+.lightbox-text h4 {
+    font-size: 24px;
+    margin-bottom: 10px;
+    font-weight: bold;
+    color: black;
+}
+
+.lightbox-text p {
+    font-size: 16px;
+    line-height: 1.6;
+    color: black;
+}
+
+/* Navigation buttons */
+.lightbox-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    border: none;
+    font-size: 24px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
+    transition: background 0.3s ease, transform 0.3s ease; /* Smooth transition */
+}
+
+.lightbox-prev {
+    left: -30px;
+}
+
+.lightbox-next {
+    right: -30px;
+}
+
+.lightbox-nav:hover {
+    background: rgba(0, 0, 0, 0.8);
+}
+
+/* Close button */
 .lightbox-close {
     position: absolute;
-    top: 0px;        /* Move closer to the top */
-    right: 0px;      /* Move closer to the right */
+    top: 10px;
+    right: 10px;
     background: #fff;
     color: #000;
     border: none;
@@ -775,95 +755,68 @@ section {
     justify-content: center;
     align-items: center;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
-    z-index: 9999;   /* Ensure it's on top of other elements */
 }
 
-/* Lightbox Navigation Button Style */
-.lightbox-nav {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background: rgba(0, 0, 0, 0.5); /* Darker background for a sleek look */
-    color: #fff;
-    border: none;
-    font-size: 20px; /* Smaller font size for better mobile responsiveness */
-    width: 30px;     /* Reduced width */
-    height: 30px;    /* Reduced height */
-    border-radius: 50%; /* Circular buttons */
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3); /* Subtle shadow effect */
-    transition: background 0.3s ease, transform 0.3s ease; /* Smooth transition */
+/* Mobile styles */
+@media (max-width: 768px) {
+    .lightbox-content {
+        flex-direction: column !important; /* Stack the text and image vertically */
+        height: auto !important; /* Let the content adjust to its natural height */
+        background: transparent !important;  /* Remove the white background on mobile */
+        padding: 10px !important;  /* Reduce padding for a more compact layout */
+    }
+
+    .lightbox-media {
+        width: 100% !important; /* Make image take up full width */
+        height: auto !important; /* Allow the image to scale proportionally */
+        padding: 0;
+    }
+
+    .lightbox-text {
+        width: 100% !important; /* Make text take up full width */
+        padding: 10px 10px 10px 10px;
+        text-align: left !important; /* Center text on mobile */
+        color: white;
+    }
+
+    .lightbox-text h4 {
+        font-size: 16px !important; /* Adjust font size for mobile */
+        margin-bottom: 5px;
+        color: white;
+    }
+
+    .lightbox-text p {
+        font-size: 12px !important;
+        line-height: 1.4;
+        color: white;
+    }
+
+    .lightbox-nav {
+        width: 20px !important; /* Smaller navigation buttons */
+        height: 20px !important;
+        font-size: 15px !important; /* Smaller font size for mobile */
+    }
+
+    .lightbox-prev {
+        left: -20px !important;
+    }
+
+    .lightbox-next {
+        right: -20px !important;
+    }
+
+    /* Close button */
+    .lightbox-close {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        font-size: 15px;
+        font-weight: bold;
+        width: 20px;
+        height: 20px;
+    }
 }
 
-/* Hover effect */
-.lightbox-nav:hover {
-    background: rgba(0, 0, 0, 0.8); /* Darker on hover */
-}
-
-/* Left and Right Buttons Positioning */
-.lightbox-prev {
-    left: -30px; /* Adjust for more breathing space */
-}
-
-.lightbox-next {
-    right: -30px; /* Adjust for more breathing space */
-}
-
-/* Achievement Lightbox - Left and Right Layout */
-.achievement-lightbox .lightbox-content {
-    width: 90%;  /* Lightbox takes 90% of the screen width */
-    max-width: 1600px;  /* Increase max width to allow for a larger lightbox */
-    height: 80%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-/* Left Panel (Image) */
-.achievement-lightbox .lightbox-image {
-    flex: 7;  /* Image takes 70% of the space */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    max-width: 100%;  /* Allow image container to take up full width */
-    padding: 10px;
-}
-
-/* Ensure the image is as large as possible */
-.achievement-lightbox .lightbox-image img {
-    width: 100%;  /* Image takes up 100% of the container width */
-    height: auto;
-    object-fit: contain;  /* Ensure the image retains its aspect ratio */
-    max-height: 100%; /* Ensure the image doesn't exceed the height of the container */
-    border-radius: 8px;
-}
-
-/* Right Panel (Description) */
-.achievement-lightbox .lightbox-text {
-    flex: 3;  /* Description takes 30% of the space */
-    padding: 20px;
-    text-align: left;
-    max-width: 30%;  /* Limit description width to 30% */
-    overflow-y: auto;
-}
-
-.achievement-lightbox .lightbox-text h4 {
-    font-size: 24px;
-    margin-bottom: 10px;
-    font-weight: bold;
-}
-
-.achievement-lightbox .lightbox-text p {
-    font-size: 16px;
-    line-height: 1.6;
-}
 /* Project Card Styles */
 .project-card {
     border: 1px solid rgb(212, 211, 211);
