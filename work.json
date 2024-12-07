@@ -1,0 +1,52 @@
+{
+    "experiences": [
+      {
+        "logo": "assets/2X-logo.jpeg",
+        "role": "Data Analyst",
+        "organization": "2X Marketing Sdn. Bhd.",
+        "dates": "Aug 2023 - Present",
+        "duration": "1 yr 5 mos",
+        "location": "Kuala Lumpur City, Federal Territory of Kuala Lumpur, Malaysia",
+        "description": "• ",
+        "skills": [
+          "Leadership"
+        ]
+      },
+      {
+        "logo": "assets/deloitte-logo.png",
+        "role": "Technology Analyst",
+        "organization": "Deloitte Consulting",
+        "dates": "Jun 2022 - Jul 2023",
+        "duration": "1 yr 2 mos",
+        "location": "Kuala Lumpur City, Federal Territory of Kuala Lumpur, Malaysia",
+        "description": "**Enterprise Technology & Performance (ETP) - Systems Engineering** \n• Full stack developer developed mobile and web applications for the eCommerce platform using VueJS, NodeJS, Java.\n• Constructed API endpoints in the application using AWS services for communication with other resources.\n• Led a team in diagnosing and resolving technical issues, fostered knowledge exchange, and effectively fixed bugs.\n• Managed change requests for the project and coordinated with stakeholders to ensure successful implementation.\n• Created comprehensive project documentation for future reference and helped optimize issue resolution processes.\n\n**Artificial Intelligence & Data (AI&D) - Operation Team**\n• Performed thorough checks on the Enterprise Data Warehouse (EDW) to identify the discrepancies between dashboard numbers and actual business reports.\n• Facilitated sessions with clients to present findings, address problems, and offer guidance on subsequent steps.\n• Supported in EDW Disaster Recovery Server Setup preparation, such as planning activities and backup files & folders.\n• Assisted with AWS Cloud migration assessment via executive interviews and workshops to recommend the client's digital strategy.",
+        "achievements": []
+      },
+      {
+        "logo": "assets/deloitte-logo.png",
+        "role": "Technology Intern",
+        "organization": "Deloitte Consulting",
+        "dates": "Jan 2022 - Apr 2022",
+        "duration": "4 mos",
+        "location": "Kuala Lumpur City, Federal Territory of Kuala Lumpur, Malaysia",
+        "description": "**Enterprise Technology & Performance (ETP) - Systems Engineering** \n• Developed & maintained the factory monitoring system and resolved bug issues using Java and JSP.\n• Supported the monitoring, maintenance, and validation of dashboards for a bank and telco company using Tableau and PowerBI.",
+        "skills": [
+            "Tableau · JavaScript · Java · jsp"
+          ],
+        "achievements": []
+      },
+      {
+        "logo": "assets/maslee-logo.jpg",
+        "role": "Data Analyst",
+        "organization": "Maslee Express · Part-time",
+        "dates": "Jan 2022 - Apr 2022",
+        "duration": "4 mos",
+        "location": "Kuala Lumpur City, Federal Territory of Kuala Lumpur, Malaysia",
+        "description": "• Assisted the company in initiating data analysis efforts, leading to valuable business insights through analytics.\n• Implemented a customer-focused membership loyalty program that utilized customer segmentation analytics, leading to a better understanding of customer behavior and preferences for the company.",
+        "skills": [
+            "IBM SPSS"
+          ],
+        "achievements": []
+      }
+    ]
+  }

@@ -11,7 +11,171 @@ document.addEventListener("DOMContentLoaded", () => {
         // Add more categories and their corresponding colors here
     };
 
-    const container = document.getElementById("timeline-container");
+    const work_container = document.getElementById("work-timeline-container");
+    const education_container = document.getElementById("education-timeline-container");
+
+    // Fetch work.json
+    fetch('work.json')
+        .then(response => response.json())
+        .then(data => {
+            const experiences = data.experiences;
+            const allImages = []; // Store all images for navigation
+            const allAchievements = [];
+
+            experiences.forEach(exp => {
+                if (exp.images) allImages.push(...exp.images);
+
+                const timelineItem = document.createElement('div');
+                timelineItem.classList.add('timeline-item');
+
+                const timelineLine = document.createElement('div');
+                timelineLine.classList.add('timeline-line');
+
+                const timelineContent = document.createElement('div');
+                timelineContent.classList.add('timeline-content');
+
+                const timelineHeader = document.createElement('div');
+                timelineHeader.classList.add('timeline-header');
+
+                const avatar = document.createElement('img');
+                avatar.src = `${exp.logo}`;
+                avatar.alt = `${exp.organization} Logo`;
+                avatar.classList.add('avatar');
+
+                const headerDetails = document.createElement('div');
+                headerDetails.innerHTML = `
+                    <h3 class="role-title">${exp.role}</h3>
+                    <p class="organization-name">${exp.organization}</p>
+                    <p class="date-range">${exp.dates} · ${exp.duration}</p>
+                    <p class="location">${exp.location}</p>
+                `;
+
+                timelineHeader.appendChild(avatar);
+                timelineHeader.appendChild(headerDetails);
+
+                const description = document.createElement('div');
+                description.classList.add('timeline-description');
+                // Create the description with conditional rendering for skills
+                description.innerHTML = `
+                    <p>${exp.description.replace(/\*\*(.*?)\*\*/g, '<b>$1</b>').replace(/\n/g, '<br>')}</p>
+                    ${
+                        exp.skills && exp.skills.length > 0 
+                        ? `<p class="skills">💎 Skills: ${exp.skills.join(", ")}</p>` 
+                        : ''
+                    }
+                `;
+
+                if (exp.images) {
+
+                    console.log(experiences)
+                    const imageGallery = document.createElement('div');
+                    imageGallery.classList.add('image-gallery');
+
+                    const scrollbar = document.querySelector('.scrollbar');
+                    imageGallery.addEventListener('scroll', () => {
+                        const scrollPercentage = imageGallery.scrollLeft / imageGallery.scrollWidth;
+                        scrollbar.style.left = `${scrollPercentage * 100}%`;
+                    });
+
+                    exp.images.forEach((img, index) => {
+                        const image = document.createElement('img');
+                        image.src = img;
+                        image.alt = `Experience Image ${index + 1}`;
+                        image.addEventListener("click", () => openImageLightbox(allImages, index));
+                        imageGallery.appendChild(image);
+                    });
+
+                    description.appendChild(imageGallery);
+                }
+
+                // Create Achievement Section with Image and PDF Click Functionality
+                if (exp.achievements) {
+
+                    const achievementDiv = document.createElement('div');
+                    achievementDiv.classList.add('achievement');
+
+                    exp.achievements.forEach(achievement => {
+
+                        const achievementImage = document.createElement('img');
+                        achievementImage.alt = "Achievement Image";
+
+                        // Check if the achievement image is a PDF
+                        if (achievement.image.toLowerCase().endsWith('.pdf')) {
+                            console.log("Found PDF:", achievement.image);
+
+                            // Create a canvas to render the first page of the PDF
+                            const canvas = document.createElement('canvas');
+                            canvas.alt = "Achievement PDF";
+
+                            // Use pdf.js to render the PDF into the canvas
+                            renderPDFPageAsImage(achievement.image, canvas, (imageUrl) => {
+                                // Convert the canvas to a data URL and set it as the image source
+                                achievement.image = imageUrl;
+                                achievementImage.src = imageUrl;
+
+                                // Append the image (converted from PDF) first
+                                achievementDiv.appendChild(achievementImage);
+
+                                // Append the achievement div to the description container
+                                description.appendChild(achievementDiv);
+                            });
+                        } else {
+                            // Handle regular image
+                            achievementImage.src = achievement.image;
+
+                            // Append the regular image first
+                            achievementDiv.appendChild(achievementImage);
+
+                            // Append the achievement div to the description container
+                            description.appendChild(achievementDiv);
+                        }
+
+                        allAchievements.push(achievement);
+
+                        achievementImage.addEventListener("click", () => openAchievementLightbox(achievement, allAchievements));
+                    });
+                    
+                }
+                
+
+                // Function to render the first page of a PDF into a canvas and convert it to an image URL
+                function renderPDFPageAsImage(pdfUrl, canvas, callback) {
+                    const loadingTask = pdfjsLib.getDocument(pdfUrl);  // Load the PDF
+                    loadingTask.promise.then(pdf => {
+                        pdf.getPage(1).then(page => {  // Render the first page
+                            const viewport = page.getViewport({ scale: 1.5 });  // Adjust scale as needed
+                            const context = canvas.getContext('2d');
+                            canvas.width = viewport.width;
+                            canvas.height = viewport.height;
+
+                            const renderContext = {
+                                canvasContext: context,
+                                viewport: viewport
+                            };
+
+                            page.render(renderContext).promise.then(() => {
+                                console.log("PDF rendered successfully!");
+
+                                // Convert the canvas to a data URL and pass it to the callback
+                                const imageUrl = canvas.toDataURL();
+                                callback(imageUrl);
+                            });
+                        });
+                    }).catch(error => {
+                        console.error("Error loading PDF:", error);
+                    });
+                }
+
+                timelineContent.appendChild(timelineHeader);
+                timelineContent.appendChild(description);
+
+                timelineItem.appendChild(timelineLine);
+                timelineItem.appendChild(timelineContent);
+
+                work_container.appendChild(timelineItem);
+            });
+        })
+        .catch(error => console.error('Error loading JSON:', error));
 
     // Fetch education.json
     fetch('education.json')
@@ -171,7 +335,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 timelineItem.appendChild(timelineLine);
                 timelineItem.appendChild(timelineContent);
 
-                container.appendChild(timelineItem);
+                education_container.appendChild(timelineItem);
             });
         })
         .catch(error => console.error('Error loading JSON:', error));

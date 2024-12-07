@@ -482,7 +482,7 @@ section {
     text-align: left; /* Left-align description */
 }
 
-#timeline-container, .timeline-description {
+#education-timeline-container, #work-timeline-container, .timeline-description {
     overflow: visible !important; /* Ensure no layout restrictions */
     width: 100% !important; /* Full width */
 }
@@ -493,7 +493,7 @@ section {
 }
 
 /* Timeline Container */
-#timeline-container {
+#education-timeline-container, #work-timeline-container{
     width: 100%; /* Ensure full-width container */
     overflow: hidden; /* Prevent unintended overflow */
     box-sizing: border-box; /* Ensure padding doesn't affect dimensions */
