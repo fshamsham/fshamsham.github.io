@@ -4,17 +4,13 @@ body {
     margin: 0;
     padding: 0;
     line-height: 1.6;
-    background-color: #white;
+    background-color: #101314;
     color: white;
-    min-height: 100vh; /* Make sure the body takes at least full screen height */
-    display: flex;
-    flex-direction: column; /* Stack the content vertically */
     animation: fadeIn 2s ease-in-out; /* Apply fade-in animation to the whole body */
 }
 
-/* Main Content Area */
-main {
-    flex: 1; /* This ensures the main content area takes up all available space */
+* {
+    box-sizing: border-box; /* Ensures padding and border don't affect width */
 }
 
 /* Section with Background Image */
