@@ -4,9 +4,17 @@ body {
     margin: 0;
     padding: 0;
     line-height: 1.6;
-    background-color: #101314;
+    background-color: #white;
     color: white;
+    min-height: 100vh; /* Make sure the body takes at least full screen height */
+    display: flex;
+    flex-direction: column; /* Stack the content vertically */
     animation: fadeIn 2s ease-in-out; /* Apply fade-in animation to the whole body */
+}
+
+/* Main Content Area */
+main {
+    flex: 1; /* This ensures the main content area takes up all available space */
 }
 
 /* Section with Background Image */
@@ -361,6 +369,33 @@ section {
     .view-more-btn {
         padding: 6px 12px; /* Even smaller button for tiny screens */
     }
+}
+
+/* Footer Styling */
+footer {
+    background-color: #333; /* Dark background for the footer */
+    color: #fff; /* White text color */
+    text-align: center; /* Center the text */
+    padding: 20px; /* Add padding around the footer */
+    width: 100%; /* Ensure it takes up full width */
+    position: relative; /* Ensure it stays at the bottom of the page */
+    bottom: 0; /* Push the footer to the bottom of the page */
+    margin-top: auto; /* Push footer to the bottom when content is short */
+}
+
+/* Footer Text Styling */
+footer p {
+    font-size: 14px; /* Slightly smaller text */
+}
+
+/* Optionally, you can add styles for links inside footer */
+footer a {
+    color: #fff; /* White color for links */
+    text-decoration: none; /* Remove underline */
+}
+
+footer a:hover {
+    text-decoration: underline; /* Underline on hover */
 }
 
 /* Section Title */

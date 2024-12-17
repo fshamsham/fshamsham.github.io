@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Details</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#experience">Experience</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="project-details">
+            <div id="project-header">
+                <h1 id="project-title"></h1>
+                <span id="project-date"></span>
+            </div>
+            <div id="created-by">Created by: <span id="creator-name"></span></div>
+            
+            <!-- Categories will be displayed here -->
+            <div id="project-categories"></div>
+            
+            <div id="project-gallery">
+                <div id="project-image-container">
+                    <!-- Only one image will be displayed at a time -->
+                    <img id="project-image" src="" alt="Project Image" />
+                </div>
+                
+            <!-- Gallery controls -->
+            <div id="gallery-controls" style="display: none;">
+                <button id="prev-image" disabled>◀</button>
+                <button id="next-image">▶</button>
+            </div>
+            </div>
+
+            <div id="project-summary">
+                <!-- Project summary will be displayed here -->
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Fang Ying. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+    // Fetch project data from JSON file
+    fetch("projects.json")
+        .then(response => response.json())
+        .then(data => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const projectTitle = urlParams.get("project");  // Get the project title from query param
+
+            const project = data.projects.find(p => p.title.toLowerCase().replace(/\s+/g, '-') === projectTitle); // Find the matching project
+            
+            if (project) {
+                // Populate the page with the project details
+                document.getElementById("project-title").textContent = project.title;
+                document.getElementById("project-date").textContent = project.date;
+                document.getElementById("creator-name").textContent = project.creator;
+                document.getElementById("project-summary").textContent = project.summary;
+
+                // Display the project categories
+                const categoriesContainer = document.getElementById("project-categories");
+                project.category.forEach(category => {
+                    const categoryElement = document.createElement("span");
+                    categoryElement.className = "project-category";
+                    categoryElement.textContent = category;
+                    categoriesContainer.appendChild(categoryElement);
+                });
+
+                // Display the images in a gallery
+                const images = project.images;
+                let currentImageIndex = 0; // Start with the first image
+
+                // Function to display the current image
+                function displayImage() {
+                    document.getElementById("project-image").src = images[currentImageIndex];
+
+                    // Enable/Disable buttons based on the current image
+                    document.getElementById("prev-image").disabled = currentImageIndex === 0;
+                    document.getElementById("next-image").disabled = currentImageIndex === images.length - 1;
+                }
+
+                // Show gallery controls only if there are more than 1 image
+                if (images.length > 1) {
+                    document.getElementById("gallery-controls").style.display = "flex";
+                } else {
+                    document.getElementById("gallery-controls").style.display = "none";
+                }
+
+                // Navigate to the previous image
+                document.getElementById("prev-image").addEventListener("click", () => {
+                    if (currentImageIndex > 0) {
+                        currentImageIndex--;
+                        displayImage();
+                    }
+                });
+
+                // Navigate to the next image
+                document.getElementById("next-image").addEventListener("click", () => {
+                    if (currentImageIndex < images.length - 1) {
+                        currentImageIndex++;
+                        displayImage();
+                    }
+                });
+
+                // Initial image display
+                displayImage();
+            } else {
+                document.getElementById("project-details").innerHTML = "Project not found.";
+            }
+        })
+        .catch(err => console.error("Failed to load projects:", err));
+    </script>
+</body>
+</html>
+
+<style>
+/* Reset default margins and padding */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Ensure the body and html take up full height */
+html, body {
+    height: 100%;
+}
+
+/* General body styling */
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f8f8f8;
+    color: #333;
+    line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Main content area */
+main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    flex: 1; /* This makes sure the main content takes the available space */
+}
+
+/* Project Details container */
+#project-details {
+    background-color: #fff;
+    padding: 1.5rem;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 1.0rem;
+}
+
+#project-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+}
+
+#project-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #2d3e50;
+    max-width: 70%;
+}
+
+#project-meta {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 5px;
+    color: #777;
+}
+
+#project-date {
+    font-size: 1rem;
+    color: #777;
+}
+
+#created-by {
+    font-size: 1rem;
+    color: #777;
+    text-align: left;
+}
+
+/* Project Categories */
+#project-categories {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 20px; /* Space between categories and project gallery */
+}
+
+.project-category {
+    background-color: #44b3d6;
+    color: white;
+    padding: 8px 16px;
+    border-radius: 30px;
+    font-size: 0.80rem;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+}
+
+.project-category:hover {
+    background-color: #398baf;
+}
+
+/* Gallery layout */
+#project-gallery {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#project-image-container {
+    width: 100%;
+    max-width: 100%; /* Ensures the container doesn't stretch beyond the page width */
+    height: 500px; /* Fixed height for uniformity */
+    overflow: hidden;
+    position: relative;
+    margin-bottom: 20px;
+}
+
+#project-image {
+    width: 100%;
+    height: 100%; /* Ensure the image takes up the full container height */
+    object-fit: cover; /* Ensures the image covers the assigned space without stretching */
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* Gallery controls */
+#gallery-controls {
+    display: flex; /* Display buttons in a line */
+    justify-content: center; /* Center the buttons horizontally */
+    gap: 20px; /* Add space between buttons */
+}
+
+/* Style for individual buttons */
+#gallery-controls button {
+    padding: 10px 20px;
+    background-color: #ee224a;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#gallery-controls button:hover {
+    background-color: transparent;
+    color: #ee224a;
+    border: 2px solid #ee224a;
+}
+
+/* Style for disabled buttons */
+#gallery-controls button:disabled {
+    opacity: 0.2;
+    cursor: not-allowed;
+}
+
+
+/* Project summary */
+#project-summary {
+    font-size: 1.1rem;
+    color: #444;
+    line-height: 1.8;
+    margin-top: 20px;
+    text-align: left;
+}
+
+/* Footer */
+footer {
+    background-color: #2b3a42;
+    color: white;
+    padding: 15px;
+    text-align: center;
+}
+
+footer p {
+    font-size: 1rem;
+}
+
+/* Responsive design for small screens */
+@media (max-width: 768px) {
+    #project-details {
+        gap: 00.8rem;
+    }
+
+    #project-title {
+        font-size: 2rem;
+        max-width: 100%;
+    }
+
+    #project-header {
+        flex-direction: column; /* Ensure the title and date stack vertically */
+        align-items: flex-start; /* Align left */
+    }
+    
+    #project-date {
+        font-size: 1rem; /* Adjust date size for smaller screens */
+    }   
+
+    #project-meta {
+        align-items: flex-start;
+    }
+
+    #project-gallery {
+        max-width: 100%;
+    }
+
+    #project-image-container {
+        height: 300px; /* Adjust height for smaller screens */
+    }
+
+    #project-summary {
+        max-width: 100%;
+    }
+}
+</style>

@@ -487,7 +487,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     const projectCard = document.createElement("div");
                     projectCard.className = "project-card";
                     projectCard.dataset.summary = project.summary;
-                    projectCard.dataset.link = project.link;
+                    projectCard.dataset.id = project.id;
 
                     // Create and append category tags
                     const categoryContainer = document.createElement("div");
@@ -504,9 +504,11 @@ document.addEventListener("DOMContentLoaded", () => {
                         categoryContainer.appendChild(categoryElement);
                     });
 
+                    console.log("Check image: ", project.images[0])
+
                     // Set project card HTML
                     projectCard.innerHTML = `
-                        <img src="${project.image}" alt="${project.title}">
+                        <img src="${project.images[0]}" alt="${project.title}">
                         <h3>${project.title}</h3>
                     `;
 
@@ -515,7 +517,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
                     // Add event listener to each project card to open modal
                     projectCard.addEventListener("click", () => {
-                        openModal(project.title, project.summary, project.link, project.category);
+                        openModal(project.title, project.summary, project.id, project.category);
                     });
 
                     projectsGrid.appendChild(projectCard);
@@ -541,10 +543,11 @@ document.addEventListener("DOMContentLoaded", () => {
     const closeModal = document.querySelector(".close-btn");
 
     // Function to open the modal
-    function openModal(title, summary, link, categories) {
+    function openModal(title, summary, id, categories) {
+        console.log(id);
         modalTitle.textContent = title;
         modalSummary.textContent = summary;
-        modalLink.href = link;
+        modalLink.href = "project-detail.html?project=" + id;
 
         // Clear previous categories in the modal
         modalCategories.innerHTML = '';

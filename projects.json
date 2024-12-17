@@ -1,25 +1,35 @@
 {
     "projects": [
         {
+            "id": "finance-dashboard",
             "title": "Finance Dashboard",
+            "creator": "Fang Ying",
+            "date": "2024-12",
             "category": ["Web Development"],
             "summary": "A finance dashboard built with React and D3.js for data visualization.A finance dashboard built with React and D3.js for data visualization.A finance dashboard built with React and D3.js for data visualization.",
-            "link": "https://example.com/finance-dashboard",
-            "image": "assets/finance-dashboard.jpg"
+            "images": [
+                "assets/finance-dashboard.jpg", 
+                "assets/portfolio-website.png", 
+                "assets/weather-app.png"
+            ]
         },
         {
+            "id": "portfolio-website",
             "title": "Portfolio Website",
+            "creator": "Fang Ying",
+            "date": "dummy",
             "category": ["Web Design", "Frontend"],
             "summary": "A clean and responsive portfolio website using HTML, CSS, and JavaScript.",
-            "link": "https://example.com/portfolio",
-            "image": "assets/portfolio-website.png"
+            "images": ["assets/portfolio-website.png"]
         },
         {
+            "id": "weather-app",
             "title": "Weather App",
+            "creator": "Fang Ying",
+            "date": "dummy",
             "category": ["Applications", "API"],
             "summary": "A weather app using OpenWeather API with real-time updates.",
-            "link": "https://example.com/weather-app",
-            "image": "assets/weather-app.png"
+            "images": ["assets/weather-app.png"]
         }
     ]
 }
