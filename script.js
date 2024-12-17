@@ -560,12 +560,7 @@ document.addEventListener("DOMContentLoaded", () => {
             modalCategories.appendChild(categoryTag);
         });
 
-        modal.style.display = "flex";
-
-        // Close modal when the modal link is clicked
-        modalLink.addEventListener("click", () => {
-            modal.style.display = "none"; // Hide modal
-        });
+        modal.style.display = "flex";  // Show the modal
     }
 
     // Close modal when clicking the close button
@@ -579,6 +574,14 @@ document.addEventListener("DOMContentLoaded", () => {
             modal.style.display = "none"; // Hide modal
         }
     });
+
+    // Close modal when the modal link is clicked
+    modalLink.addEventListener("click", (e) => {
+        e.preventDefault();  // Prevent the default link behavior (page navigation)
+        modal.style.display = "none";  // Hide the modal
+        window.location.href = modalLink.href;  // Navigate to the project detail page
+    });
+
 
     // Highlight active section in navigation on scroll
     const sections = document.querySelectorAll("section");
