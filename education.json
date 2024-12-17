@@ -12,13 +12,67 @@
         "Video Production",
         "Leadership"
       ],
-      "images": [
-        "assets/finance-dashboard.jpg",
-        "assets/weather-app.jpeg",
-        "https://placehold.co/80x80",
-        "assets/finance-dashboard.jpg",
-        "assets/weather-app.jpeg",
-        "https://placehold.co/80x80"
+      "achievements": [
+        {
+          "title": "26th INTIMA Best Affiliate Award - Mass Communication Club 2022",
+          "type": "image", 
+          "description": "",
+          "image": "assets/education/inti-1.jpeg"
+        },
+        {
+          "title": "26th MCC Bonding Trip & Aprreciation",
+          "type": "image", 
+          "description": "",
+          "image": "assets/education/inti-2.jpeg"
+        },
+        {
+          "title": "June 2022 #Back To Campus - Organizing Chairperson",
+          "type": "image", 
+          "description": "",
+          "image": "assets/education/inti-3.jpeg"
+        },
+        {
+          "title": "Mass Communication Club 2022 - Chairperson",
+          "type": "image", 
+          "description": "Group photo with the General Committee of Mass Communication Club in 2022.",
+          "image": "assets/education/inti-4.jpeg"
+        },
+        {
+          "title": "Mass Communication Week 2021 - Organizing Chairperson",
+          "type": "image", 
+          "description": "",
+          "image": "assets/education/inti-5.jpeg"
+        },
+        {
+          "title": "INTI IU Chinese New Year Night Event 2020 - Publicity",
+          "type": "image", 
+          "description": "One of the publicity of INTI IU Chinese New Year Night Event 2020 organized by Chinese Cultural Society.\n• Made posters to publicize the CNY event.\n• Made event T-shirt design.",
+          "image": "assets/education/inti-6.jpeg"
+        },
+        {
+          "title": "INTI IU Chinese New Year Night Event 2020",
+          "type": "image", 
+          "description": "Group photo with the event crew of INTI IU Chinese New Year Night Event 2020.",
+          "image": "assets/education/inti-7.jpeg"
+        },
+        {
+          "title": "Mass Communication Week 2019",
+          "type": "image", 
+          "description": "Group photo with the event crew of Mass Communication Week 2019.",
+          "image": "assets/education/inti-8.jpeg"
+        },
+        {
+          "title": "Mass Communication Week 2019 - Multimedia Coordinator",
+          "type": "image", 
+          "description": "One of the multimedia coordinator of Mass Communication Week 2019 organized by Mass Communication Club.\n• Assisted in producing a JINGLE for the event, which included song recording and video production.",
+          "image": "assets/education/inti-9.jpeg"
+        },
+        {
+          "title": "Mass Communication Club Bonding Trip 2019",
+          "type": "image", 
+          "description": "Having a bonding trip with members of the Mass Communication Club in Melaka to strengthen our relationship.",
+          "image": "assets/education/inti-10.jpeg"
+        }
       ]
     },
     {

@@ -9,10 +9,6 @@ body {
     animation: fadeIn 2s ease-in-out; /* Apply fade-in animation to the whole body */
 }
 
-* {
-    box-sizing: border-box; /* Ensures padding and border don't affect width */
-}
-
 /* Section with Background Image */
 .background-section {
     height: 60vh; /* Full viewport height */
@@ -367,33 +363,6 @@ section {
     }
 }
 
-/* Footer Styling */
-footer {
-    background-color: #333; /* Dark background for the footer */
-    color: #fff; /* White text color */
-    text-align: center; /* Center the text */
-    padding: 20px; /* Add padding around the footer */
-    width: 100%; /* Ensure it takes up full width */
-    position: relative; /* Ensure it stays at the bottom of the page */
-    bottom: 0; /* Push the footer to the bottom of the page */
-    margin-top: auto; /* Push footer to the bottom when content is short */
-}
-
-/* Footer Text Styling */
-footer p {
-    font-size: 14px; /* Slightly smaller text */
-}
-
-/* Optionally, you can add styles for links inside footer */
-footer a {
-    color: #fff; /* White color for links */
-    text-decoration: none; /* Remove underline */
-}
-
-footer a:hover {
-    text-decoration: underline; /* Underline on hover */
-}
-
 /* Section Title */
 .section-title {
     font-size: 24px;
@@ -668,7 +637,6 @@ footer a:hover {
 }
 
 /* Lightbox Styles */
-/* Lightbox Styles */
 .lightbox {
     position: fixed;
     top: 0;
@@ -790,10 +758,16 @@ footer a:hover {
 
 /* Mobile styles */
 @media (max-width: 768px) {
+    /* Lightbox Styles */
+    .lightbox {
+        background: rgba(0, 0, 0, 1.0);
+    }
+
     .lightbox-content {
         flex-direction: column !important; /* Stack the text and image vertically */
         height: auto !important; /* Let the content adjust to its natural height */
         background: transparent !important;  /* Remove the white background on mobile */
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.0);
         padding: 10px !important;  /* Reduce padding for a more compact layout */
     }
 

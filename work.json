@@ -20,7 +20,20 @@
         "duration": "1 yr 2 mos",
         "location": "Kuala Lumpur City, Federal Territory of Kuala Lumpur, Malaysia",
         "description": "**Enterprise Technology & Performance (ETP) - Systems Engineering** \n• Full stack developer developed mobile and web applications for the eCommerce platform using VueJS, NodeJS, Java.\n• Constructed API endpoints in the application using AWS services for communication with other resources.\n• Led a team in diagnosing and resolving technical issues, fostered knowledge exchange, and effectively fixed bugs.\n• Managed change requests for the project and coordinated with stakeholders to ensure successful implementation.\n• Created comprehensive project documentation for future reference and helped optimize issue resolution processes.\n\n**Artificial Intelligence & Data (AI&D) - Operation Team**\n• Performed thorough checks on the Enterprise Data Warehouse (EDW) to identify the discrepancies between dashboard numbers and actual business reports.\n• Facilitated sessions with clients to present findings, address problems, and offer guidance on subsequent steps.\n• Supported in EDW Disaster Recovery Server Setup preparation, such as planning activities and backup files & folders.\n• Assisted with AWS Cloud migration assessment via executive interviews and workshops to recommend the client's digital strategy.",
-        "achievements": []
+        "achievements": [
+          {
+            "title": "test",
+            "description": "The Final Year Project, titled 'Developing a Talent Prediction System with a Combination of Personality Tests using Predictive Analytics', was nominated and selected as the Best Project among more than 50 peers after undergoing an interview session by Coventry University.",
+            "type": "image", 
+            "image": "assets/finance-dashboard.jpg"
+          },
+          {
+            "title": "test2",
+            "description": "Awarded by Coventry University as the best student with the highest CGPA among peers in the same batch.",
+            "type": "image", 
+            "image": "assets/best-student-award.pdf"
+          }
+        ]
       },
       {
         "logo": "assets/deloitte-logo.png",

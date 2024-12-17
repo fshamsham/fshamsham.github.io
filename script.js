@@ -132,7 +132,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
                         allAchievements.push(achievement);
 
-                        achievementImage.addEventListener("click", () => openAchievementLightbox(achievement, allAchievements));
+                        achievementImage.addEventListener("click", () => openAchievementLightbox(achievement, exp.achievements));
                     });
                     
                 }
@@ -295,7 +295,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
                         allAchievements.push(achievement);
 
-                        achievementImage.addEventListener("click", () => openAchievementLightbox(achievement, allAchievements));
+                        achievementImage.addEventListener("click", () => openAchievementLightbox(achievement, exp.achievements));
                     });
                     
                 }
@@ -390,6 +390,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Function to open the lightbox for a particular achievement/media
     function openAchievementLightbox(achievement, allAchievements) {
+
         const lightbox = document.createElement('div');
         lightbox.classList.add('lightbox');
 
@@ -418,10 +419,26 @@ document.addEventListener("DOMContentLoaded", () => {
                 video.appendChild(source);
                 mediaContainer.appendChild(video);
             }
-            
+
             textContainer.querySelector('h4').textContent = currentAchievement.title;
             textContainer.querySelector('p').textContent = currentAchievement.description;
             currentIndex = index;
+
+            // Hide prev button if on first item
+            const prevButton = lightbox.querySelector('.lightbox-prev');
+            if (currentIndex === 0) {
+                prevButton.style.display = 'none';
+            } else {
+                prevButton.style.display = 'inline-block';
+            }
+
+            // Hide next button if on last item
+            const nextButton = lightbox.querySelector('.lightbox-next');
+            if (currentIndex === allAchievements.length - 1) {
+                nextButton.style.display = 'none';
+            } else {
+                nextButton.style.display = 'inline-block';
+            }
         };
 
         // Create the lightbox HTML structure
@@ -470,6 +487,7 @@ document.addEventListener("DOMContentLoaded", () => {
         // Initial content
         updateLightboxContent(currentIndex);
     }
+
 
 
     // Fetch projects from JSON
