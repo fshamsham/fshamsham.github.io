@@ -561,6 +561,11 @@ document.addEventListener("DOMContentLoaded", () => {
         });
 
         modal.style.display = "flex";
+
+        // Close modal when the modal link is clicked
+        modalLink.addEventListener("click", () => {
+            modal.style.display = "none"; // Hide modal
+        });
     }
 
     // Close modal when clicking the close button
