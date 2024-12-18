@@ -673,6 +673,8 @@ section {
     align-items: center;
     padding: 10px;
     overflow: hidden;
+    position: relative;
+    touch-action: none; /* Disable the default touch actions */
 }
 
 .lightbox-media img {
@@ -756,6 +758,42 @@ section {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
 }
 
+/* Style the bullet points container and the individual bullets */
+.lightbox-bullets {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    position: fixed;
+    bottom: 20px; /* Position the bullets at the bottom */
+    left: 0;
+    width: 100%;
+    z-index: 999; /* Ensure bullets are above other content */
+}
+
+/* Hide the bullet points on non-mobile devices */
+@media (min-width: 769px) {
+    .lightbox-bullets {
+        display: none;
+    }
+}
+
+/* Style the individual bullet points */
+.lightbox-bullet {
+    width: 8px;
+    height: 8px;
+    margin: 0 5px;
+    border-radius: 50%;
+    background-color: #bbb;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+/* Style the active bullet */
+.lightbox-bullet.active {
+    background-color: #ee224a;
+}
+
 /* Mobile styles */
 @media (max-width: 768px) {
     /* Lightbox Styles */
@@ -774,6 +812,8 @@ section {
     .lightbox-media {
         width: 100% !important; /* Make image take up full width */
         height: auto !important; /* Allow the image to scale proportionally */
+        position: relative;
+        display: inline-block; /* or block depending on the layout */
         padding: 0;
     }
 
@@ -797,29 +837,31 @@ section {
     }
 
     .lightbox-nav {
+        top: 35%;
         width: 20px !important; /* Smaller navigation buttons */
         height: 20px !important;
         font-size: 15px !important; /* Smaller font size for mobile */
     }
 
     .lightbox-prev {
-        left: -20px !important;
+        left: -10px !important;
     }
 
     .lightbox-next {
-        right: -20px !important;
+        right: -10px !important;
     }
 
     /* Close button */
     .lightbox-close {
-        position: absolute;
-        top: 10px;
-        right: 10px;
-        font-size: 15px;
-        font-weight: bold;
-        width: 20px;
-        height: 20px;
+        top: 5px; /* Adjust position for smaller screens */
+        right: 5px; /* Adjust position for smaller screens */
+        font-size: 24px; /* Slightly smaller font size for mobile */
+        color: white; /* Ensure the close button remains white */
+        background: none; /* Ensure no background */
+        border: none; /* Ensure no border */
     }
+
+
 }
 
 /* Project Card Styles */

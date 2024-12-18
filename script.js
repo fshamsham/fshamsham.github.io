@@ -390,20 +390,61 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Function to open the lightbox for a particular achievement/media
     function openAchievementLightbox(achievement, allAchievements) {
-
         const lightbox = document.createElement('div');
         lightbox.classList.add('lightbox');
 
-        let currentIndex = allAchievements.indexOf(achievement);
+        // Determine whether the device is mobile or web
+        const isMobile = window.innerWidth <= 768; // Customize the breakpoint as needed
 
+        console.log("ismobile: ", isMobile);
+
+        // Select the appropriate lightbox structure based on the device type
+        if (isMobile) {
+            lightbox.innerHTML = `
+                <button class="lightbox-close">&times;</button>
+                <div class="lightbox-content achievement-lightbox">
+                    <button class="lightbox-nav lightbox-prev">&lt;</button>
+                    <div class="lightbox-media">
+                        <!-- Media content will go here -->
+                    </div>
+                    <div class="lightbox-text">
+                        <h4></h4>
+                        <p></p>
+                    </div>
+                    <button class="lightbox-nav lightbox-next">&gt;</button>
+                </div>
+                <div class="lightbox-bullets">
+                    ${allAchievements.map((_, index) => `
+                        <button class="lightbox-bullet" data-index="${index}"></button>
+                    `).join('')}
+                </div>
+            `;
+        } else {
+            lightbox.innerHTML = `
+                <div class="lightbox-content achievement-lightbox">
+                    <button class="lightbox-close">&times;</button>
+                    <button class="lightbox-nav lightbox-prev">&lt;</button>
+                    <div class="lightbox-media">
+                        <!-- Media content will go here -->
+                    </div>
+                    <div class="lightbox-text">
+                        <h4></h4>
+                        <p></p>
+                    </div>
+                    <button class="lightbox-nav lightbox-next">&gt;</button>
+                </div>
+            `;
+        }
+
+        document.body.appendChild(lightbox);
+
+        // Add functionality for updating and navigating content
+        let currentIndex = allAchievements.indexOf(achievement);
         const updateLightboxContent = (index) => {
             const currentAchievement = allAchievements[index];
-            
-            // Update lightbox with different media types
             const mediaContainer = lightbox.querySelector('.lightbox-media');
             const textContainer = lightbox.querySelector('.lightbox-text');
 
-            // Clear current media and add the new media type
             mediaContainer.innerHTML = '';
             if (currentAchievement.type === 'image') {
                 const img = document.createElement('img');
@@ -424,70 +465,83 @@ document.addEventListener("DOMContentLoaded", () => {
             textContainer.querySelector('p').textContent = currentAchievement.description;
             currentIndex = index;
 
-            // Hide prev button if on first item
             const prevButton = lightbox.querySelector('.lightbox-prev');
-            if (currentIndex === 0) {
-                prevButton.style.display = 'none';
-            } else {
-                prevButton.style.display = 'inline-block';
-            }
-
-            // Hide next button if on last item
             const nextButton = lightbox.querySelector('.lightbox-next');
-            if (currentIndex === allAchievements.length - 1) {
-                nextButton.style.display = 'none';
-            } else {
-                nextButton.style.display = 'inline-block';
+
+            prevButton.style.display = currentIndex === 0 ? 'none' : 'inline-block';
+            nextButton.style.display = currentIndex === allAchievements.length - 1 ? 'none' : 'inline-block';
+
+            // Update the bullet points for mobile
+            if (isMobile) {
+                const bullets = lightbox.querySelectorAll('.lightbox-bullet');
+                bullets.forEach(bullet => bullet.classList.remove('active'));
+                bullets[currentIndex].classList.add('active');
             }
         };
 
-        // Create the lightbox HTML structure
-        lightbox.innerHTML = `
-            <div class="lightbox-content achievement-lightbox">
-                <button class="lightbox-close">&times;</button>
-                <button class="lightbox-nav lightbox-prev">&lt;</button>
-                <div class="lightbox-media">
-                    <!-- Media content will go here -->
-                </div>
-                <div class="lightbox-text">
-                    <h4></h4>
-                    <p></p>
-                </div>
-                <button class="lightbox-nav lightbox-next">&gt;</button>
-            </div>
-        `;
-        document.body.appendChild(lightbox);
-
-        // Add functionality to previous button
+        // Add navigation and close functionality
         lightbox.querySelector('.lightbox-prev').addEventListener('click', () => {
-            if (currentIndex > 0) {
-                updateLightboxContent(currentIndex - 1);
-            }
+            if (currentIndex > 0) updateLightboxContent(currentIndex - 1);
         });
 
-        // Add functionality to next button
         lightbox.querySelector('.lightbox-next').addEventListener('click', () => {
-            if (currentIndex < allAchievements.length - 1) {
-                updateLightboxContent(currentIndex + 1);
-            }
+            if (currentIndex < allAchievements.length - 1) updateLightboxContent(currentIndex + 1);
         });
 
-        // Close lightbox functionality
+        // Bullet point click functionality for mobile
+        if (isMobile) {
+            const bullets = lightbox.querySelectorAll('.lightbox-bullet');
+            bullets.forEach(bullet => {
+                bullet.addEventListener('click', (e) => {
+                    const index = parseInt(e.target.dataset.index, 10);
+                    updateLightboxContent(index);
+                });
+            });
+        }
+
         lightbox.querySelector('.lightbox-close').addEventListener('click', () => {
             document.body.removeChild(lightbox);
+            document.body.style.overflow = ''; // Restore scrolling
         });
 
-        // Close lightbox on outside click
         lightbox.addEventListener('click', (e) => {
             if (e.target === lightbox) {
                 document.body.removeChild(lightbox);
+                document.body.style.overflow = ''; // Restore scrolling
             }
         });
 
-        // Initial content
-        updateLightboxContent(currentIndex);
-    }
+        // Prevent background scrolling
+        document.body.style.overflow = 'hidden';
 
+        // Initialize the lightbox with the current content
+        updateLightboxContent(currentIndex);
+
+        // Add swipe gesture functionality for mobile: swipe on the entire lightbox
+        let startX = 0;
+        let endX = 0;
+
+        lightbox.addEventListener('touchstart', (e) => {
+            startX = e.touches[0].clientX;
+        });
+
+        lightbox.addEventListener('touchend', (e) => {
+            endX = e.changedTouches[0].clientX;
+
+            // Detect swipe direction
+            if (startX - endX > 50) {
+                // Swipe left (next)
+                if (currentIndex < allAchievements.length - 1) {
+                    updateLightboxContent(currentIndex + 1);
+                }
+            } else if (endX - startX > 50) {
+                // Swipe right (prev)
+                if (currentIndex > 0) {
+                    updateLightboxContent(currentIndex - 1);
+                }
+            }
+        });
+    }
 
 
     // Fetch projects from JSON
