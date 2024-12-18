@@ -774,10 +774,11 @@ section {
     bottom: 20px;
     left: 0;
     right: 0;
-    max-height: au;
     z-index: 999;
+    max-height: 40px; /* Set a maximum height explicitly */
+    overflow: hidden; /* Prevent any overflow issues */
+    -webkit-overflow-scrolling: touch; /* Enhance scrolling behavior */
 }
-
 
 /* Hide the bullet points on non-mobile devices */
 @media (min-width: 769px) {
@@ -788,21 +789,29 @@ section {
 
 /* Style the individual bullet points */
 .lightbox-bullet {
-    width: 8px !important;
-    height: 8px !important;
-    margin: 0 5px !important;
-    padding: 0 !important; /* Ensure no internal padding */
-    border-radius: 50% !important;
-    display: inline-block !important; /* Prevent flex/grid stretch */
+    width: 10px;
+    height: 10px;
+    margin: 0 5px;
+    padding: 0;
+    box-sizing: border-box; /* Ensure padding/border doesn't affect size */
+    border-radius: 50%;
+    display: inline-block;
     background-color: #bbb;
-    border: none !important;
-    flex-shrink: 0 !important; /* Prevent shrinking in flex containers */
+    flex-shrink: 0; /* Prevent shrinking */
+}
+
+/* Ensure proper scaling on iOS by resetting some defaults */
+.lightbox-bullet {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+    -webkit-appearance: none; /* Remove native styles on iOS */
 }
 
 /* Style the active bullet */
 .lightbox-bullet.active {
     background-color: #ee224a;
 }
+
 
 /* Mobile styles */
 @media (max-width: 768px) {
