@@ -767,13 +767,17 @@ section {
 .lightbox-bullets {
     display: flex;
     justify-content: center;
+    align-items: center;
+    flex-wrap: nowrap;
     margin-top: 20px;
     position: fixed;
-    bottom: 20px; /* Position the bullets at the bottom */
+    bottom: 20px;
     left: 0;
-    width: 100%;
-    z-index: 999; /* Ensure bullets are above other content */
+    right: 0;
+    max-height: au;
+    z-index: 999;
 }
+
 
 /* Hide the bullet points on non-mobile devices */
 @media (min-width: 769px) {
@@ -784,19 +788,16 @@ section {
 
 /* Style the individual bullet points */
 .lightbox-bullet {
-    width: 8px;
-    height: 8px;
-    margin: 0 5px;
-    border-radius: 50%;
+    width: 8px !important;
+    height: 8px !important;
+    margin: 0 5px !important;
+    padding: 0 !important; /* Ensure no internal padding */
+    border-radius: 50% !important;
+    display: inline-block !important; /* Prevent flex/grid stretch */
     background-color: #bbb;
-    border: none;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    box-sizing: border-box; /* Prevent resizing issues */
-    transform: scale(1); /* Force reflow/repaint for iOS */
+    border: none !important;
+    flex-shrink: 0 !important; /* Prevent shrinking in flex containers */
 }
-
-
 
 /* Style the active bullet */
 .lightbox-bullet.active {
@@ -878,11 +879,6 @@ section {
         border: none; /* Ensure no border */
     }
 
-    .lightbox-bullet {
-        width: 12px;  /* Smaller bullet size */
-        height: 12px; /* Smaller bullet size */
-        transform: scale(1); /* Force reflow/repaint for iOS */
-    }
 }
 
 /* Project Card Styles */
