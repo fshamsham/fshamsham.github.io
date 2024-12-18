@@ -9,6 +9,11 @@ body {
     animation: fadeIn 2s ease-in-out; /* Apply fade-in animation to the whole body */
 }
 
+* {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+
 /* Section with Background Image */
 .background-section {
     height: 60vh; /* Full viewport height */
@@ -787,10 +792,10 @@ section {
     border: none;
     cursor: pointer;
     transition: background-color 0.3s ease;
-    box-sizing: border-box;  /* Prevents resizing issues */
-    max-width: 8px;  /* Ensures bullets don't grow too large */
-    max-height: 8px; /* Ensures bullets don't grow too large */
+    box-sizing: border-box; /* Prevent resizing issues */
+    transform: scale(1); /* Force reflow/repaint for iOS */
 }
+
 
 
 /* Style the active bullet */
@@ -852,6 +857,7 @@ section {
         color: white; /* Ensure the close button remains white */
         background: none; /* Ensure no background */
         border: none; /* Ensure no border */
+        box-shadow: none;
     }
 
     .lightbox-next {
@@ -859,6 +865,7 @@ section {
         color: white; /* Ensure the close button remains white */
         background: none; /* Ensure no background */
         border: none; /* Ensure no border */
+        box-shadow: none;
     }
 
     /* Close button */
@@ -871,7 +878,11 @@ section {
         border: none; /* Ensure no border */
     }
 
-
+    .lightbox-bullet {
+        width: 8px;  /* Smaller bullet size */
+        height: 8px; /* Smaller bullet size */
+        transform: scale(1); /* Force reflow/repaint for iOS */
+    }
 }
 
 /* Project Card Styles */
