@@ -849,11 +849,11 @@ section {
         top: 35%;
         width: 20px !important; /* Smaller navigation buttons */
         height: 20px !important;
-        font-size: 15px !important; /* Smaller font size for mobile */
+        font-size: 18px !important; /* Smaller font size for mobile */
     }
 
     .lightbox-prev {
-        left: -10px !important;
+        left: -20px !important;
         color: white; /* Ensure the close button remains white */
         background: none; /* Ensure no background */
         border: none; /* Ensure no border */
@@ -861,7 +861,7 @@ section {
     }
 
     .lightbox-next {
-        right: -10px !important;
+        right: -20px !important;
         color: white; /* Ensure the close button remains white */
         background: none; /* Ensure no background */
         border: none; /* Ensure no border */
@@ -879,8 +879,8 @@ section {
     }
 
     .lightbox-bullet {
-        width: 8px;  /* Smaller bullet size */
-        height: 8px; /* Smaller bullet size */
+        width: 12px;  /* Smaller bullet size */
+        height: 12px; /* Smaller bullet size */
         transform: scale(1); /* Force reflow/repaint for iOS */
     }
 }
