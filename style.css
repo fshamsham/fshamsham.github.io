@@ -787,7 +787,11 @@ section {
     border: none;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    box-sizing: border-box;  /* Prevents resizing issues */
+    max-width: 8px;  /* Ensures bullets don't grow too large */
+    max-height: 8px; /* Ensures bullets don't grow too large */
 }
+
 
 /* Style the active bullet */
 .lightbox-bullet.active {
@@ -845,10 +849,16 @@ section {
 
     .lightbox-prev {
         left: -10px !important;
+        color: white; /* Ensure the close button remains white */
+        background: none; /* Ensure no background */
+        border: none; /* Ensure no border */
     }
 
     .lightbox-next {
         right: -10px !important;
+        color: white; /* Ensure the close button remains white */
+        background: none; /* Ensure no background */
+        border: none; /* Ensure no border */
     }
 
     /* Close button */
