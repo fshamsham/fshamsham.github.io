@@ -403,7 +403,7 @@ document.addEventListener("DOMContentLoaded", () => {
             lightbox.innerHTML = `
                 <button class="lightbox-close">&times;</button>
                 <div class="lightbox-content achievement-lightbox">
-                    <button class="lightbox-nav lightbox-prev">&lt;</button>
+                    <button class="lightbox-nav lightbox-prev">&#10094;</button>
                     <div class="lightbox-media">
                         <!-- Media content will go here -->
                     </div>
@@ -411,7 +411,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         <h4></h4>
                         <p></p>
                     </div>
-                    <button class="lightbox-nav lightbox-next">&gt;</button>
+                    <button class="lightbox-nav lightbox-next">&#10095;</button>
                 </div>
                 <div class="lightbox-bullets">
                     ${allAchievements.map((_, index) => `
@@ -423,7 +423,7 @@ document.addEventListener("DOMContentLoaded", () => {
             lightbox.innerHTML = `
                 <div class="lightbox-content achievement-lightbox">
                     <button class="lightbox-close">&times;</button>
-                    <button class="lightbox-nav lightbox-prev">&lt;</button>
+                    <button class="lightbox-nav lightbox-prev">&#10094;</button>
                     <div class="lightbox-media">
                         <!-- Media content will go here -->
                     </div>
@@ -431,7 +431,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         <h4></h4>
                         <p></p>
                     </div>
-                    <button class="lightbox-nav lightbox-next">&gt;</button>
+                    <button class="lightbox-nav lightbox-next">&#10095;</button>
                 </div>
             `;
         }
