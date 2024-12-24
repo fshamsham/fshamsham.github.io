@@ -291,6 +291,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
                             // Append the achievement div to the description container
                             description.appendChild(achievementDiv);
+
                         }
 
                         allAchievements.push(achievement);
@@ -462,7 +463,8 @@ document.addEventListener("DOMContentLoaded", () => {
             }
 
             textContainer.querySelector('h4').textContent = currentAchievement.title;
-            textContainer.querySelector('p').textContent = currentAchievement.description;
+            // Replace \n with <br> and set as innerHTML
+            textContainer.querySelector('p').innerHTML = currentAchievement.description.replace(/\n/g, '<br>');
             currentIndex = index;
 
             const prevButton = lightbox.querySelector('.lightbox-prev');
