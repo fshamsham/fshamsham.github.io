@@ -559,9 +559,11 @@ document.addEventListener("DOMContentLoaded", () => {
             const displayProjects = (projects) => {
                 projects.forEach(project => {
                     const projectCard = document.createElement("div");
+
                     projectCard.className = "project-card";
                     projectCard.dataset.summary = project.summary;
                     projectCard.dataset.id = project.id;
+                    projectCard.dataset.date = project.date;
 
                     // Create and append category tags
                     const categoryContainer = document.createElement("div");
@@ -580,11 +582,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
                     console.log("Check image: ", project.images[0])
 
-                    // Set project card HTML
+                    function capitalizeDate(dateString) {
+                        return dateString.toUpperCase();  // Correct method to convert string to uppercase
+                    }
+                    
                     projectCard.innerHTML = `
+                        <div class="project-date">${capitalizeDate(project.date)}</div>
                         <img src="${project.images[0]}" alt="${project.title}">
                         <h3>${project.title}</h3>
                     `;
+                    
 
                     // Append the category element inside the project card
                     projectCard.appendChild(categoryContainer);
