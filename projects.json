@@ -1,35 +1,26 @@
 {
     "projects": [
         {
-            "id": "finance-dashboard",
-            "title": "Finance Dashboard",
+            "id": "talent-prediction-system",
+            "title": "Talent Prediction System",
             "creator": "Fang Ying",
-            "date": "2024-12",
-            "category": ["Web Development"],
-            "summary": "A finance dashboard built with React and D3.js for data visualization.A finance dashboard built with React and D3.js for data visualization.A finance dashboard built with React and D3.js for data visualization.",
+            "date": "Nov 2021",
+            "category": ["Predictive Analytics"],
+            "summary": "Developing a Talent Prediction System with a Combination of Personality Tests using Predictive Analytics",
             "images": [
-                "assets/finance-dashboard.jpg", 
-                "assets/portfolio-website.png", 
-                "assets/weather-app.png"
+                "assets/project/talent-prediction-system-1.png",
+                "assets/project/talent-prediction-system-2.png", 
+                "assets/project/talent-prediction-system-3.png"
             ]
         },
         {
-            "id": "portfolio-website",
-            "title": "Portfolio Website",
+            "id": "relationship-sleep-disorder-and-lifestyle",
+            "title": "Relationship: Sleep Disorder & Lifestyle",
             "creator": "Fang Ying",
-            "date": "dummy",
-            "category": ["Web Design", "Frontend"],
-            "summary": "A clean and responsive portfolio website using HTML, CSS, and JavaScript.",
-            "images": ["assets/portfolio-website.png"]
-        },
-        {
-            "id": "weather-app",
-            "title": "Weather App",
-            "creator": "Fang Ying",
-            "date": "dummy",
-            "category": ["Applications", "API"],
-            "summary": "A weather app using OpenWeather API with real-time updates.",
-            "images": ["assets/weather-app.png"]
+            "date": "July 2021",
+            "category": ["Predictive Analytics"],
+            "summary": "Uncovering Relationship between Sleep Disorder and Lifestyle using Predictive Analytics",
+            "images": [""]
         }
     ]
 }

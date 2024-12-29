@@ -60,8 +60,8 @@
             const urlParams = new URLSearchParams(window.location.search);
             const projectTitle = urlParams.get("project");  // Get the project title from query param
 
-            const project = data.projects.find(p => p.title.toLowerCase().replace(/\s+/g, '-') === projectTitle); // Find the matching project
-            
+            const project = data.projects.find(p => p.id === projectTitle); // Find the matching project
+
             if (project) {
                 // Populate the page with the project details
                 document.getElementById("project-title").textContent = project.title;
